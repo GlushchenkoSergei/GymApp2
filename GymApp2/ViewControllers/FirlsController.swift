@@ -13,7 +13,6 @@ class FirlsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if userDefaults.array(forKey: "First") == nil {
             userDefaults.setValue(["Спина", "Бицепс"], forKey: "First")
             userDefaults.setValue(["Ноги"], forKey: "Second")

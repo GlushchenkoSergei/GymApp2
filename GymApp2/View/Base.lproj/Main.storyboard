@@ -637,14 +637,17 @@
                                 <rect key="frame" x="37" y="96" width="301" height="260"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRF-JM-6hQ">
-                                <rect key="frame" x="37" y="366" width="301" height="23"/>
+                                <rect key="frame" x="37" y="366" width="301" height="25"/>
                                 <color key="tintColor" red="0.28032949569999999" green="0.5944413543" blue="0.70199918750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.37282348710000002" green="0.78946267839999995" blue="0.93048525940000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" systemColor="labelColor"/>
+                                <size key="shadowOffset" width="0.0" height="-2"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mb5-fR-Phd">
-                                <rect key="frame" x="20" y="397" width="335" height="184.5"/>
+                                <rect key="frame" x="20" y="399" width="335" height="184.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.46748766362272354" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">В следующей версии к упражнениям добавиться подробное описание и правильная техника выполнения!                          А так же спортсмены не должны забывать о правильном питании!                                                        Во время тренировок становится еще более важным иметь хорошую диету, чтобы обеспечить правильное соотношение макроэлементов в организме, обеспечивая при этом достаточное количество питательных микроэлементов, чтобы помочь организму в процессе восстановления после напряженных упражнений.[1]
 
 Активное восстановление рекомендуется после физических упражнений, поскольку оно выводит лактат из крови быстрее, чем неактивное восстановление. Удаление лактата из кровообращения позволяет легко снизить температуру тела, что также может принести пользу иммунной системе, поскольку человек может быть уязвим перед незначительными заболеваниями, если температура тела падает слишком резко после физических упражнений.

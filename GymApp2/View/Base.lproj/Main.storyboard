@@ -239,23 +239,23 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="RC5-2n-Ble">
                                                 <rect key="frame" x="0.0" y="0.0" width="49" height="255"/>
                                                 <subviews>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sd2-gl-REP" customClass="MuscleSwitch" customModule="GymApp" customModuleProvider="target">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sd2-gl-REP" customClass="MuscleSwitch" customModule="GymApp2" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                         <color key="onTintColor" red="0.35783582930000002" green="0.77015131709999995" blue="0.92554271219999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </switch>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VZt-4M-vFQ" customClass="MuscleSwitch" customModule="GymApp" customModuleProvider="target">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VZt-4M-vFQ" customClass="MuscleSwitch" customModule="GymApp2" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="56" width="51" height="31"/>
                                                         <color key="onTintColor" red="0.35723547100000003" green="0.76756096669999996" blue="0.92580591069999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </switch>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JJH-tk-4AG" customClass="MuscleSwitch" customModule="GymApp" customModuleProvider="target">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JJH-tk-4AG" customClass="MuscleSwitch" customModule="GymApp2" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="112" width="51" height="31"/>
                                                         <color key="onTintColor" red="0.35783582930000002" green="0.77015131709999995" blue="0.92554271219999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </switch>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUJ-EB-8B1" customClass="MuscleSwitch" customModule="GymApp" customModuleProvider="target">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUJ-EB-8B1" customClass="MuscleSwitch" customModule="GymApp2" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="168" width="51" height="31"/>
                                                         <color key="onTintColor" red="0.35783582930000002" green="0.77015131709999995" blue="0.92554271219999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </switch>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LJg-tJ-KlJ" customClass="MuscleSwitch" customModule="GymApp" customModuleProvider="target">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LJg-tJ-KlJ" customClass="MuscleSwitch" customModule="GymApp2" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="224" width="51" height="31"/>
                                                         <color key="onTintColor" red="0.35783582930000002" green="0.77015131709999995" blue="0.92554271219999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </switch>
@@ -502,7 +502,7 @@
             </objects>
             <point key="canvasLocation" x="484.05797101449281" y="63.616071428571423"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Библиотека упражнений-->
         <scene sceneID="Qjo-ac-VbX">
             <objects>
                 <tableViewController id="mXI-VQ-x4h" customClass="LibraryController" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
@@ -528,13 +528,13 @@
                             <outlet property="delegate" destination="mXI-VQ-x4h" id="HsB-uj-dMY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="dLZ-zz-c9A"/>
+                    <navigationItem key="navigationItem" title="Библиотека упражнений" id="dLZ-zz-c9A"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kEh-r3-9Si" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2981" y="745"/>
         </scene>
-        <!--Types of muscle groups-->
+        <!--Тренеровка-->
         <scene sceneID="e6d-Sn-16j">
             <objects>
                 <viewController id="oEw-85-G8v" customClass="ExercisesControllerNew" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
@@ -610,7 +610,9 @@
                             <constraint firstItem="34U-Ek-RF2" firstAttribute="top" secondItem="FUt-2c-2nq" secondAttribute="top" id="kcF-SJ-8f5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Types of muscle groups" id="Xi2-dt-aRa"/>
+                    <navigationItem key="navigationItem" title="Тренеровка" leftItemsSupplementBackButton="YES" id="Xi2-dt-aRa">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="IEC-I6-xaB"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mainTableView" destination="Qj4-ZC-s3l" id="ZMf-4K-F2n"/>
                         <outlet property="sc" destination="34U-Ek-RF2" id="L2p-HH-OWm"/>
@@ -643,11 +645,11 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mb5-fR-Phd">
                                 <rect key="frame" x="20" y="397" width="335" height="184.5"/>
-                                <mutableString key="text">В следующей версии к упражнениям добавиться подробное описание и правильная техника выполнения!                          А так же спортсмены не должны забывать о правильном питании!                                                        Во время тренировок становится еще более важным иметь хорошую диету, чтобы обеспечить правильное соотношение макроэлементов в организме, обеспечивая при этом достаточное количество питательных микроэлементов, чтобы помочь организму в процессе восстановления после напряженных упражнений.[1]
+                                <string key="text">В следующей версии к упражнениям добавиться подробное описание и правильная техника выполнения!                          А так же спортсмены не должны забывать о правильном питании!                                                        Во время тренировок становится еще более важным иметь хорошую диету, чтобы обеспечить правильное соотношение макроэлементов в организме, обеспечивая при этом достаточное количество питательных микроэлементов, чтобы помочь организму в процессе восстановления после напряженных упражнений.[1]
 
 Активное восстановление рекомендуется после физических упражнений, поскольку оно выводит лактат из крови быстрее, чем неактивное восстановление. Удаление лактата из кровообращения позволяет легко снизить температуру тела, что также может принести пользу иммунной системе, поскольку человек может быть уязвим перед незначительными заболеваниями, если температура тела падает слишком резко после физических упражнений.
 
-Физические упражнения влияют на аппетит, но то, как они повышают или снижают аппетит, варьируется от человека к человеку и зависит от интенсивности и продолжительности упражнений</mutableString>
+Физические упражнения влияют на аппетит, но то, как они повышают или снижают аппетит, варьируется от человека к человеку и зависит от интенсивности и продолжительности упражнений</string>
                                 <color key="textColor" red="0.28032949569999999" green="0.5944413543" blue="0.70199918750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

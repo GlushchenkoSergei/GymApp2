@@ -29,7 +29,6 @@ class SettingsViewController: UIViewController {
         muscleSwitches[4].type = .legs
         
         selectSegment()
-        
     }
     
   

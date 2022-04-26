@@ -116,12 +116,12 @@
 		04B931192817C51300F56B33 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				04B9311A2817C51300F56B33 /* ChangeDetailController.swift */,
-				04B9311B2817C51300F56B33 /* LibrayController.swift */,
-				04B9311C2817C51300F56B33 /* DetailController.swift */,
 				04B9311D2817C51300F56B33 /* FirlsController.swift */,
 				04B9311E2817C51300F56B33 /* ExercisesControllerNew.swift */,
+				04B9311C2817C51300F56B33 /* DetailController.swift */,
 				04B9311F2817C51300F56B33 /* SettingsViewController.swift */,
+				04B9311B2817C51300F56B33 /* LibrayController.swift */,
+				04B9311A2817C51300F56B33 /* ChangeDetailController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -373,7 +373,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WZJ6JFW8X2;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GymApp2/Sistem/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -402,7 +402,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WZJ6JFW8X2;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GymApp2/Sistem/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

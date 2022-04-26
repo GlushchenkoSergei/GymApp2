@@ -5,9 +5,6 @@
 //  Created by mac on 23.04.2022.
 //
 
-import Foundation
-import CoreText
-
 struct Exercise {
     var description: String
     var image: String

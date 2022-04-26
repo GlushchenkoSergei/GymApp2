@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yVa-5N-Yd9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yVa-5N-Yd9">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -534,7 +534,7 @@
             </objects>
             <point key="canvasLocation" x="2981" y="745"/>
         </scene>
-        <!--Тренеровка-->
+        <!--Тренировка-->
         <scene sceneID="e6d-Sn-16j">
             <objects>
                 <viewController id="oEw-85-G8v" customClass="ExercisesControllerNew" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
@@ -610,7 +610,7 @@
                             <constraint firstItem="34U-Ek-RF2" firstAttribute="top" secondItem="FUt-2c-2nq" secondAttribute="top" id="kcF-SJ-8f5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Тренеровка" leftItemsSupplementBackButton="YES" id="Xi2-dt-aRa">
+                    <navigationItem key="navigationItem" title="Тренировка" leftItemsSupplementBackButton="YES" id="Xi2-dt-aRa">
                         <barButtonItem key="backBarButtonItem" title="Back" id="IEC-I6-xaB"/>
                     </navigationItem>
                     <connections>

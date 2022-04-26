@@ -14,12 +14,14 @@ class SettingsViewController: UIViewController {
     @IBOutlet var numberOfStepper: UILabel!
     @IBOutlet var outletSegmentControl: UISegmentedControl!
     @IBOutlet var muscleSwitches: [MuscleSwitch]!
-
+    
+    @IBOutlet var outletStepper: UIStepper!
+    
     private var muscleGroup = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setValueControl()
         muscleSwitches[0].type = .breast
         muscleSwitches[1].type = .biceps
         muscleSwitches[2].type = .triceps
@@ -27,6 +29,7 @@ class SettingsViewController: UIViewController {
         muscleSwitches[4].type = .legs
         
         selectSegment()
+        
     }
     
   
@@ -70,8 +73,44 @@ class SettingsViewController: UIViewController {
         let currentSegment = outletSegmentControl.selectedSegmentIndex
         guard let titleCurrenSegment = outletSegmentControl.titleForSegment(at: currentSegment) else { return }
         setupMuscleGroup()
+        
+        //Dara for switch
         userDefaults.setValue(muscleGroup, forKey: titleCurrenSegment)
+        
+        //Dara for segmentControl
+        let forUserDefaults: [Int] = [Int(numberOfStepper.text ?? "") ?? 0]
+        userDefaults.setValue(forUserDefaults, forKey: "numberSegment")
+
         showAlert(with: "", and: "Настройки для \(titleCurrenSegment) тренеровки сохраненны")
+    }
+    
+    
+    private func setValueControl() {
+        guard userDefaults.array(forKey: "numberSegment") != nil else { return }
+        let values = userDefaults.array(forKey: "numberSegment") as! [Int]
+        let value = values[0]
+        numberOfStepper.text = "\(value)"
+        outletStepper.value = Double(value - 1)
+        
+        outletSegmentControl.removeSegment(at: 2, animated: false)
+        outletSegmentControl.removeSegment(at: 1, animated: false)
+        
+        switch value {
+        case 1: return
+        case 2: addSecond()
+        default: addSecond()
+                addThree()
+        }
+    }
+    
+    private func addFirst() {
+        outletSegmentControl.insertSegment(withTitle: "First", at: 0, animated: false)
+    }
+    private func addSecond() {
+        outletSegmentControl.insertSegment(withTitle: "Second", at: 1, animated: false)
+    }
+    private func addThree() {
+        outletSegmentControl.insertSegment(withTitle: "Three", at: 2, animated: false)
     }
     
     private func setupMuscleGroup() {

@@ -26,15 +26,43 @@ class ExercisesControllerNew: UIViewController, ExercisesControllerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setValueControl()
         selectExercise()
         mainTableView.reloadData()
         mainTableView.rowHeight = 80
+        
     }
     
     @IBAction func segmentControl(_ sender: UISegmentedControl) {
         
         selectExercise()
         mainTableView.reloadData()
+    }
+    
+    private func setValueControl() {
+        guard userDefaults.array(forKey: "numberSegment") != nil else { return }
+        let values = userDefaults.array(forKey: "numberSegment") as! [Int]
+        let value = values[0]
+        
+        sc.removeSegment(at: 2, animated: false)
+        sc.removeSegment(at: 1, animated: false)
+        
+        switch value {
+        case 1: return
+        case 2: addSecond()
+        default: addSecond()
+                addThree()
+        }
+    }
+    
+    private func addFirst() {
+        sc.insertSegment(withTitle: "First", at: 0, animated: false)
+    }
+    private func addSecond() {
+        sc.insertSegment(withTitle: "Second", at: 1, animated: false)
+    }
+    private func addThree() {
+        sc.insertSegment(withTitle: "Three", at: 2, animated: false)
     }
     
     private func selectExercise() {

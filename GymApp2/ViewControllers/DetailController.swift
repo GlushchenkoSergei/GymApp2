@@ -19,9 +19,10 @@ class DetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\(exercise.description)")
         image.image = UIImage(named: exercise.image)
         nameLabel.text = exercise.description
+        image.layer.cornerRadius = image.frame.size.width / 20
+        image.clipsToBounds = true
     }
     
    

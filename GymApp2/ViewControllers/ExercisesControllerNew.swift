@@ -72,7 +72,6 @@ class ExercisesControllerNew: UIViewController, ExercisesControllerProtocol {
         for muscle in muscleGroupStrings {
             muscleGroup.append(MuscleGroup(rawValue: muscle)!)
         }
-        print(muscleGroup)
         changeExercise(muscles: muscleGroup)
     }
     

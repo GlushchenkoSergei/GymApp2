@@ -20,6 +20,8 @@ class ChangeDetailController: UIViewController, UITextFieldDelegate {
         image.image = UIImage(named: exercise.image)
         nameText.text = exercise.description
         descriptionText.text = exercise.numberOfRepetitions
+        image.layer.cornerRadius = image.frame.size.width / 20
+        image.clipsToBounds = true
     }
     
     @IBAction func tapSave(_ sender: Any) {

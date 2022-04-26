@@ -24,19 +24,23 @@ class ChangeDetailController: UIViewController, UITextFieldDelegate {
         image.clipsToBounds = true
     }
     
+    
+    //Функционал надо вынести в отдельный метод название которого будет говорить что происходит в этом методе
+    //Кроме того нужен делегат из библиотеки чтобы менял информацию после скрытия экрана
+    //Ну и пожалуй экран можно уменьшить, потому что на SE клавиатура скрывает все
     @IBAction func tapSave(_ sender: Any) {
         var counter = 0
-        for find in DataManage.shared.exercises {
-            if find.description == exercise.description {
+        for exercises in DataManage.shared.exercises {
+            if exercises.description == exercise.description {
                 DataManage.shared.exercises[counter].description = nameText.text ?? ""
                 DataManage.shared.exercises[counter].numberOfRepetitions = descriptionText.text ?? ""
-                showAlert(with: "", and: "Изменения для \(nameText.text ?? "") сохранены!")
+                let alert = alert(with: "", and: "Изменения для \(nameText.text ?? "") сохранены!")
+                present(alert, animated: true)
             }
             counter += 1
         }
     }
         
-    
     @IBAction func tapCancel(_ sender: Any) {
         nameText.text = exercise.description
         descriptionText.text = exercise.numberOfRepetitions
@@ -51,13 +55,7 @@ class ChangeDetailController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
         return true
     }
-    
-    private func showAlert(with title: String, and message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(alertAction)
-        present(alert, animated: true)
-    }
+
 }
 
 

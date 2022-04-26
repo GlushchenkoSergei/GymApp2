@@ -27,22 +27,15 @@ class DetailController: UIViewController {
     
    
     @IBAction func tapDone(_ sender: UIButton) {
-        
         saveExercise()
-    
     }
     
     private func saveExercise() {
         delegate.saveExercise(exercise: exercise)
-        showAlert(with: "In next update", and: "Скоро релиз ф-ци дневника")
-        
-    }
-    
-    private func showAlert(with title: String, and message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(alertAction)
+        let alert = alert(with: "In next update", and: "Скоро релиз ф-ци дневника")
         present(alert, animated: true)
+        dismiss(animated: true)
+        
     }
     
 }

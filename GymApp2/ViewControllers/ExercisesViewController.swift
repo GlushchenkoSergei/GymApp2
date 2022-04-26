@@ -1,5 +1,5 @@
 //
-//  ExercisesControllerNew.swift
+//  ExercisesViewController.swift
 //  GymApp
 //
 //  Created by mac on 23.04.2022.
@@ -11,30 +11,27 @@ protocol ExercisesControllerProtocol {
     func saveExercise(exercise: Exercise)
 }
 
-class ExercisesControllerNew: UIViewController, ExercisesControllerProtocol {
+class ExercisesViewController: UIViewController{
     
     @IBOutlet var mainTableView: UITableView!
     
-    @IBOutlet weak var sc: UISegmentedControl!
+    @IBOutlet weak var exerciseGroupsSegmentedControl: UISegmentedControl!
+    
     private let userDefaults = UserDefaults.standard
     
-    let exercises = DataManage.shared.exercises
-    var selectedExercises = [Exercise]()
-    var exercisesForSaved = [Exercise]()
-
-    var numberOfSelected = 0
+    private let exercises = DataManage.shared.exercises
+    private var selectedExercises = [Exercise]()
+    private var exercisesForSaved = [Exercise]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setValueControl()
         selectExercise()
-        mainTableView.reloadData()
         mainTableView.rowHeight = 80
         
     }
     
     @IBAction func segmentControl(_ sender: UISegmentedControl) {
-        
         selectExercise()
         mainTableView.reloadData()
     }
@@ -44,8 +41,8 @@ class ExercisesControllerNew: UIViewController, ExercisesControllerProtocol {
         let values = userDefaults.array(forKey: "numberSegment") as! [Int]
         let value = values[0]
         
-        sc.removeSegment(at: 2, animated: false)
-        sc.removeSegment(at: 1, animated: false)
+        exerciseGroupsSegmentedControl.removeSegment(at: 2, animated: false)
+        exerciseGroupsSegmentedControl.removeSegment(at: 1, animated: false)
         
         switch value {
         case 1: return
@@ -55,23 +52,27 @@ class ExercisesControllerNew: UIViewController, ExercisesControllerProtocol {
         }
     }
     
-    private func addFirst() {
-        sc.insertSegment(withTitle: "First", at: 0, animated: false)
-    }
+//    private func addFirst() {
+//        exerciseGroupsSegmentedControl.insertSegment(withTitle: "First", at: 0, animated: false)
+//    }
     private func addSecond() {
-        sc.insertSegment(withTitle: "Second", at: 1, animated: false)
+        exerciseGroupsSegmentedControl.insertSegment(withTitle: "Second", at: 1, animated: false)
     }
     private func addThree() {
-        sc.insertSegment(withTitle: "Three", at: 2, animated: false)
+        exerciseGroupsSegmentedControl.insertSegment(withTitle: "Three", at: 2, animated: false)
     }
     
     private func selectExercise() {
-        guard let titleSegment = sc.titleForSegment(at: sc.selectedSegmentIndex) else { return }
+        let selectedSegmentIndex = exerciseGroupsSegmentedControl.selectedSegmentIndex
+        guard let titleSegment = exerciseGroupsSegmentedControl.titleForSegment(at: selectedSegmentIndex) else { return }
+        
         let muscleGroupStrings = userDefaults.array(forKey: titleSegment) as! [String]
+        
         var muscleGroup = [MuscleGroup]()
         for muscle in muscleGroupStrings {
             muscleGroup.append(MuscleGroup(rawValue: muscle)!)
         }
+        
         changeExercise(muscles: muscleGroup)
     }
     
@@ -86,20 +87,14 @@ class ExercisesControllerNew: UIViewController, ExercisesControllerProtocol {
             }
         }
     }
-  
-    func saveExercise(exercise: Exercise) {
-        exercisesForSaved.append(exercise)
-    }
     
     func addExerciseToJournal() {
         // здесь надо реализовать метод сохранения в журнал
+        // exercisesForSaved
     }
     
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    // MARK: - Navigation
+// MARK: - Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let detailVC = segue.destination as? DetailController else { return }
         guard let indexPath = mainTableView.indexPathForSelectedRow else { return }
@@ -108,7 +103,16 @@ class ExercisesControllerNew: UIViewController, ExercisesControllerProtocol {
     }
 }
 
-extension ExercisesControllerNew: UITableViewDelegate, UITableViewDataSource {
+// MARK: - Настройка делегирования
+extension ExercisesViewController: ExercisesControllerProtocol {
+    
+    func saveExercise(exercise: Exercise) {
+        exercisesForSaved.append(exercise)
+    }
+}
+
+// MARK: - Настройка табличного представления
+extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         selectedExercises.count
@@ -120,21 +124,21 @@ extension ExercisesControllerNew: UITableViewDelegate, UITableViewDataSource {
         let exercises = selectedExercises[indexPath.row]
         
         var content = cell.defaultContentConfiguration()
-        content.textProperties.color = customColor()
+        content.textProperties.color = UIColor(red: 0/255, green: 169/255, blue: 209/255, alpha: 1)
         content.secondaryTextProperties.color = .gray
         content.text = exercises.description
         content.secondaryText = exercises.numberOfRepetitions
         content.image = UIImage(named: exercises.image)
+        content.imageProperties.maximumSize = CGSize(width: 70, height: 70)
         cell.contentConfiguration = content
         
         return cell
     }
-}
-
-extension ExercisesControllerNew {
-    func customColor() -> UIColor {
-        UIColor(red: 0/255, green: 169/255, blue: 209/255, alpha: 1)
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
+    
 }
 
 

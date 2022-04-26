@@ -184,7 +184,7 @@
                                         <color key="shadowColor" systemColor="labelColor"/>
                                         <size key="shadowOffset" width="-2" height="-2"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" тренеровок в неделю" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Mki-Po-lPj">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" тренировок в неделю" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Mki-Po-lPj">
                                         <rect key="frame" x="0.0" y="33.5" width="250" height="26.5"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
@@ -404,10 +404,10 @@
             </objects>
             <point key="canvasLocation" x="1541.5999999999999" y="744.3778110944528"/>
         </scene>
-        <!--Firls Controller-->
+        <!--Start View Controller-->
         <scene sceneID="8Ts-Rt-Iee">
             <objects>
-                <viewController id="5Oe-xR-GYq" customClass="FirlsController" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5Oe-xR-GYq" customClass="StartViewController" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MoI-jA-NWt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -428,7 +428,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <color key="tintColor" red="0.064106382429999997" green="0.09774351865" blue="0.1176536158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Тренеровка"/>
+                                        <state key="normal" title="Тренировка"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <integer key="value" value="10"/>
@@ -537,7 +537,7 @@
         <!--Тренировка-->
         <scene sceneID="e6d-Sn-16j">
             <objects>
-                <viewController id="oEw-85-G8v" customClass="ExercisesControllerNew" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oEw-85-G8v" customClass="ExercisesViewController" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ixd-Vb-40M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -614,8 +614,8 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="IEC-I6-xaB"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="exerciseGroupsSegmentedControl" destination="34U-Ek-RF2" id="L2p-HH-OWm"/>
                         <outlet property="mainTableView" destination="Qj4-ZC-s3l" id="ZMf-4K-F2n"/>
-                        <outlet property="sc" destination="34U-Ek-RF2" id="L2p-HH-OWm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QRb-oN-J1w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

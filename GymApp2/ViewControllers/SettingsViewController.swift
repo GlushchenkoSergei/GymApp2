@@ -31,7 +31,7 @@ class SettingsViewController: UIViewController {
         selectSegment()
     }
     
-  
+  //Функционал надо вынести в отдельные метод, а может даже в методы
     @IBAction func Stepper(_ sender: UIStepper) {
         let correctValue = Int(sender.value + 1)
         guard let valueBeforeUpdate = Int(numberOfStepper.text ?? "") else { return }
@@ -46,6 +46,8 @@ class SettingsViewController: UIViewController {
                 outletSegmentControl.insertSegment(withTitle: "Three", at: 2, animated: true)
             }
         }
+        
+        outletSegmentControl.selectedSegmentIndex = 0
         
         numberOfStepper.text = "\(correctValue)"
     }
@@ -68,6 +70,7 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    //функуионал надо вынести в отдельный метод, или методы
     @IBAction func tapSaveButton() {
         let currentSegment = outletSegmentControl.selectedSegmentIndex
         guard let titleCurrenSegment = outletSegmentControl.titleForSegment(at: currentSegment) else { return }
@@ -80,7 +83,8 @@ class SettingsViewController: UIViewController {
         let forUserDefaults: [Int] = [Int(numberOfStepper.text ?? "") ?? 0]
         userDefaults.setValue(forUserDefaults, forKey: "numberSegment")
 
-        showAlert(with: "", and: "Настройки для \(titleCurrenSegment) тренеровки сохраненны")
+        let alert = alert(with: "", and: "Настройки для \(titleCurrenSegment) тренеровки сохраненны")
+        present(alert, animated: true)
     }
     
     
@@ -102,9 +106,6 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    private func addFirst() {
-        outletSegmentControl.insertSegment(withTitle: "First", at: 0, animated: false)
-    }
     private func addSecond() {
         outletSegmentControl.insertSegment(withTitle: "Second", at: 1, animated: false)
     }
@@ -119,13 +120,6 @@ class SettingsViewController: UIViewController {
                 muscleGroup.append(muscleSwitch.type.rawValue)
             }
         }
-    }
-    
-    private func showAlert(with title: String, and message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(alertAction)
-        present(alert, animated: true)
     }
     
 }

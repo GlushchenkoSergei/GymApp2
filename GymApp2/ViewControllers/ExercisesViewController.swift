@@ -45,22 +45,21 @@ class ExercisesViewController: UIViewController{
         exerciseGroupsSegmentedControl.removeSegment(at: 1, animated: false)
         
         switch value {
-        case 1: return
-        case 2: addSecond()
-        default: addSecond()
-                addThree()
+        case 1:
+            return
+        case 2:
+            addSegment("Second")
+        default:
+            addSegment("Second")
+            addSegment("Three")
         }
     }
     
-//    private func addFirst() {
-//        exerciseGroupsSegmentedControl.insertSegment(withTitle: "First", at: 0, animated: false)
-//    }
-    private func addSecond() {
-        exerciseGroupsSegmentedControl.insertSegment(withTitle: "Second", at: 1, animated: false)
+    private func addSegment(_ name: String) {
+        let countElements = exerciseGroupsSegmentedControl.accessibilityElementCount()
+        exerciseGroupsSegmentedControl.insertSegment(withTitle: name, at: countElements + 1, animated: false)
     }
-    private func addThree() {
-        exerciseGroupsSegmentedControl.insertSegment(withTitle: "Three", at: 2, animated: false)
-    }
+    
     
     private func selectExercise() {
         let selectedSegmentIndex = exerciseGroupsSegmentedControl.selectedSegmentIndex

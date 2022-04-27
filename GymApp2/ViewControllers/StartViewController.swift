@@ -17,7 +17,6 @@ class StartViewController: UIViewController {
             userDefaults.setValue(["Спина", "Бицепс"], forKey: "First")
             userDefaults.setValue(["Ноги"], forKey: "Second")
             userDefaults.setValue(["Грудь", "Трицепс"], forKey: "Three")
-//            userDefaults.setValue(3, forKey: "numberSegment")
         }
     }
    

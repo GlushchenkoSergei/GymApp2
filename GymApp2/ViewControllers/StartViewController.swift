@@ -1,5 +1,5 @@
 //
-//  FirlsController.swift
+//  StartViewController.swift
 //  GymApp
 //
 //  Created by mac on 25.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FirlsController: UIViewController {
+class StartViewController: UIViewController {
    
     private let userDefaults = UserDefaults.standard
     
@@ -21,21 +21,15 @@ class FirlsController: UIViewController {
     }
    
     @IBAction func buttonDiary(_ sender: Any) {
-        showAlert(with: "In next update", and: "Скоро релиз ф-ци дневника")
+        let alert = alert(with: "In next update", and: "Скоро релиз ф-ци дневника")
+        present(alert, animated: true)
+        
     }
     
     @IBAction func tapAboutUs(_ sender: Any) {
-        showAlert(with: "Приложение разработали", and: """
-Сергей Глущенко: t.me gl_sergeyy
-Василий Полторак: t.me ednzlo
-"""
-        )
-    }
-    
-    private func showAlert(with title: String, and message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(alertAction)
+        let names = "Сергей Глущенко: t.me gl_sergeyy \n Василий Полторак: t.me ednzlo"
+        let alert = alert(with: "Приложение разработали", and: names)
         present(alert, animated: true)
     }
+    
 }

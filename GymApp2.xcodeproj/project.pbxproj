@@ -16,12 +16,13 @@
 		04B931242817C6FC00F56B33 /* ChangeDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9311A2817C51300F56B33 /* ChangeDetailController.swift */; };
 		04B931252817C6FE00F56B33 /* LibrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9311B2817C51300F56B33 /* LibrayController.swift */; };
 		04B931262817C70100F56B33 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9311C2817C51300F56B33 /* DetailController.swift */; };
-		04B931272817C70400F56B33 /* FirlsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9311D2817C51300F56B33 /* FirlsController.swift */; };
+		04B931272817C70400F56B33 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9311D2817C51300F56B33 /* StartViewController.swift */; };
 		04B931282817C70600F56B33 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9311F2817C51300F56B33 /* SettingsViewController.swift */; };
-		04B931292817C70900F56B33 /* ExercisesControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9311E2817C51300F56B33 /* ExercisesControllerNew.swift */; };
+		04B931292817C70900F56B33 /* ExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9311E2817C51300F56B33 /* ExercisesViewController.swift */; };
 		04B9312A2817C71700F56B33 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B931212817C51300F56B33 /* Model.swift */; };
 		04B9312B2817C71C00F56B33 /* DataManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B931232817C51300F56B33 /* DataManage.swift */; };
 		04B9312C2817C72000F56B33 /* MuscleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B931182817C51300F56B33 /* MuscleSwitch.swift */; };
+		7485B7212818846200A37BA8 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485B7202818846200A37BA8 /* AlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,11 +38,12 @@
 		04B9311A2817C51300F56B33 /* ChangeDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeDetailController.swift; sourceTree = "<group>"; };
 		04B9311B2817C51300F56B33 /* LibrayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrayController.swift; sourceTree = "<group>"; };
 		04B9311C2817C51300F56B33 /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
-		04B9311D2817C51300F56B33 /* FirlsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirlsController.swift; sourceTree = "<group>"; };
-		04B9311E2817C51300F56B33 /* ExercisesControllerNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesControllerNew.swift; sourceTree = "<group>"; };
+		04B9311D2817C51300F56B33 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		04B9311E2817C51300F56B33 /* ExercisesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewController.swift; sourceTree = "<group>"; };
 		04B9311F2817C51300F56B33 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		04B931212817C51300F56B33 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		04B931232817C51300F56B33 /* DataManage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManage.swift; sourceTree = "<group>"; };
+		7485B7202818846200A37BA8 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		04B930FE2817C32100F56B33 /* GymApp2 */ = {
 			isa = PBXGroup;
 			children = (
+				7485B7222818846A00A37BA8 /* GlobalMethods */,
 				04B931172817C51300F56B33 /* Custom Elements */,
 				04B931222817C51300F56B33 /* DataManages */,
 				04B931202817C51300F56B33 /* Models */,
@@ -116,12 +119,12 @@
 		04B931192817C51300F56B33 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				04B9311A2817C51300F56B33 /* ChangeDetailController.swift */,
-				04B9311B2817C51300F56B33 /* LibrayController.swift */,
+				04B9311D2817C51300F56B33 /* StartViewController.swift */,
+				04B9311E2817C51300F56B33 /* ExercisesViewController.swift */,
 				04B9311C2817C51300F56B33 /* DetailController.swift */,
-				04B9311D2817C51300F56B33 /* FirlsController.swift */,
-				04B9311E2817C51300F56B33 /* ExercisesControllerNew.swift */,
 				04B9311F2817C51300F56B33 /* SettingsViewController.swift */,
+				04B9311B2817C51300F56B33 /* LibrayController.swift */,
+				04B9311A2817C51300F56B33 /* ChangeDetailController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -140,6 +143,14 @@
 				04B931232817C51300F56B33 /* DataManage.swift */,
 			);
 			path = DataManages;
+			sourceTree = "<group>";
+		};
+		7485B7222818846A00A37BA8 /* GlobalMethods */ = {
+			isa = PBXGroup;
+			children = (
+				7485B7202818846200A37BA8 /* AlertController.swift */,
+			);
+			path = GlobalMethods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,15 +226,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B9312A2817C71700F56B33 /* Model.swift in Sources */,
-				04B931292817C70900F56B33 /* ExercisesControllerNew.swift in Sources */,
+				04B931292817C70900F56B33 /* ExercisesViewController.swift in Sources */,
 				04B9312B2817C71C00F56B33 /* DataManage.swift in Sources */,
+				7485B7212818846200A37BA8 /* AlertController.swift in Sources */,
 				04B9312C2817C72000F56B33 /* MuscleSwitch.swift in Sources */,
 				04B931252817C6FE00F56B33 /* LibrayController.swift in Sources */,
 				04B931242817C6FC00F56B33 /* ChangeDetailController.swift in Sources */,
 				04B931282817C70600F56B33 /* SettingsViewController.swift in Sources */,
 				04B931002817C32100F56B33 /* AppDelegate.swift in Sources */,
 				04B931262817C70100F56B33 /* DetailController.swift in Sources */,
-				04B931272817C70400F56B33 /* FirlsController.swift in Sources */,
+				04B931272817C70400F56B33 /* StartViewController.swift in Sources */,
 				04B931022817C32100F56B33 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,7 +385,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WZJ6JFW8X2;
+				DEVELOPMENT_TEAM = L4399QB5BK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GymApp2/Sistem/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -381,7 +393,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -402,7 +414,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WZJ6JFW8X2;
+				DEVELOPMENT_TEAM = L4399QB5BK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GymApp2/Sistem/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -410,7 +422,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

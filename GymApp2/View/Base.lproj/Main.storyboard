@@ -625,7 +625,7 @@
         <!--Detail Controller-->
         <scene sceneID="hAr-8g-edN">
             <objects>
-                <viewController id="dkH-3P-CPz" customClass="DetailController" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="dkH-3P-CPz" customClass="DetailController" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1D4-xk-ceF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

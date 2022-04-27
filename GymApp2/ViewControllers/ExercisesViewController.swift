@@ -70,8 +70,8 @@ class ExercisesViewController: UIViewController{
     }
     
     private func addSegment(_ name: String) {
-        let countElements = exerciseGroupsSegmentedControl.accessibilityElementCount()
-        exerciseGroupsSegmentedControl.insertSegment(withTitle: name, at: countElements + 1, animated: false)
+       let number = exerciseGroupsSegmentedControl.numberOfSegments
+        exerciseGroupsSegmentedControl.insertSegment(withTitle: name, at: number, animated: false)
     }
     
     

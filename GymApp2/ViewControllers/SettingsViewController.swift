@@ -10,11 +10,10 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     private let userDefaults = UserDefaults.standard
-
+    
     @IBOutlet var numberOfStepper: UILabel!
     @IBOutlet var outletSegmentControl: UISegmentedControl!
     @IBOutlet var muscleSwitches: [MuscleSwitch]!
-    
     @IBOutlet var outletStepper: UIStepper!
     
     private var muscleGroup = [String]()
@@ -31,30 +30,43 @@ class SettingsViewController: UIViewController {
         selectSegment()
     }
     
-  //Функционал надо вынести в отдельные метод, а может даже в методы
     @IBAction func Stepper(_ sender: UIStepper) {
         let correctValue = Int(sender.value + 1)
-        guard let valueBeforeUpdate = Int(numberOfStepper.text ?? "") else { return }
-    
-        if valueBeforeUpdate > correctValue {
-            outletSegmentControl.removeSegment(at: correctValue, animated: true)
-        }
-        if  correctValue > valueBeforeUpdate {
-            if sender.value == 1 {
-                outletSegmentControl.insertSegment(withTitle: "Second", at: 1, animated: true)
-            } else {
-                outletSegmentControl.insertSegment(withTitle: "Three", at: 2, animated: true)
-            }
-        }
         
+        removeSegments(correctValue)
+        addSegments(correctValue)
         outletSegmentControl.selectedSegmentIndex = 0
         
         numberOfStepper.text = "\(correctValue)"
     }
     
-    
     @IBAction func segmentControl(_ sender: Any) {
         selectSegment()
+    }
+    
+    @IBAction func tapSaveButton() {
+        setupMuscleGroup()
+        setupForSave()
+    }
+    
+    private func removeSegments(_ correctValue: Int) {
+        guard let valueBeforeUpdate = Int(numberOfStepper.text ?? "") else { return }
+        if valueBeforeUpdate > correctValue {
+            outletSegmentControl.removeSegment(at: correctValue, animated: true)
+        }
+        
+    }
+    
+    private func addSegments(_ correctValue: Int) {
+        guard let valueBeforeUpdate = Int(numberOfStepper.text ?? "") else { return }
+        
+        if  correctValue > valueBeforeUpdate {
+            if correctValue == 2 {
+                addSecond(animated: true)
+            } else {
+                addThree(animated: true)
+            }
+        }
     }
     
     private func selectSegment() {
@@ -70,23 +82,20 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    //функуионал надо вынести в отдельный метод, или методы
-    @IBAction func tapSaveButton() {
+    private func setupForSave() {
         let currentSegment = outletSegmentControl.selectedSegmentIndex
         guard let titleCurrenSegment = outletSegmentControl.titleForSegment(at: currentSegment) else { return }
-        setupMuscleGroup()
         
         //Dara for switch
         userDefaults.setValue(muscleGroup, forKey: titleCurrenSegment)
         
         //Dara for segmentControl
-        let forUserDefaults: [Int] = [Int(numberOfStepper.text ?? "") ?? 0]
-        userDefaults.setValue(forUserDefaults, forKey: "numberSegment")
-
+        userDefaults.setValue([Int(numberOfStepper.text ?? "") ?? 0], forKey: "numberSegment")
+        
         let alert = alert(with: "", and: "Настройки для \(titleCurrenSegment) тренеровки сохраненны")
         present(alert, animated: true)
+        
     }
-    
     
     private func setValueControl() {
         guard userDefaults.array(forKey: "numberSegment") != nil else { return }
@@ -100,17 +109,17 @@ class SettingsViewController: UIViewController {
         
         switch value {
         case 1: return
-        case 2: addSecond()
-        default: addSecond()
-                addThree()
+        case 2: addSecond(animated: false)
+        default: addSecond(animated: false)
+            addThree(animated: false)
         }
     }
     
-    private func addSecond() {
-        outletSegmentControl.insertSegment(withTitle: "Second", at: 1, animated: false)
+    private func addSecond(animated: Bool) {
+        outletSegmentControl.insertSegment(withTitle: "Second", at: 1, animated: animated)
     }
-    private func addThree() {
-        outletSegmentControl.insertSegment(withTitle: "Three", at: 2, animated: false)
+    private func addThree(animated: Bool) {
+        outletSegmentControl.insertSegment(withTitle: "Three", at: 2, animated: animated)
     }
     
     private func setupMuscleGroup() {
@@ -121,7 +130,6 @@ class SettingsViewController: UIViewController {
             }
         }
     }
-    
 }
 
 

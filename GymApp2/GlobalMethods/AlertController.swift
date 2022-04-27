@@ -11,6 +11,7 @@ func alert(with title: String, and message: String) -> UIAlertController {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
     let alertAction = UIAlertAction(title: "OK", style: .default)
     alert.addAction(alertAction)
-//    present(alert, animated: true)
     return alert
 }
+
+

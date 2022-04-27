@@ -69,11 +69,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TZb-Xl-fee">
-                                <rect key="frame" x="30" y="20" width="315" height="252.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="benchPress" translatesAutoresizingMaskIntoConstraints="NO" id="TZb-Xl-fee">
+                                <rect key="frame" x="30" y="0.0" width="315" height="252.5"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Название" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="opv-4C-GRd">
-                                <rect key="frame" x="30" y="292.5" width="315" height="34"/>
+                                <rect key="frame" x="30" y="262.5" width="315" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -81,7 +81,7 @@
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6DV-lU-fu5">
-                                <rect key="frame" x="30" y="336.5" width="315" height="220"/>
+                                <rect key="frame" x="30" y="296.5" width="315" height="220"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -137,7 +137,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="rHj-Cb-MOX" firstAttribute="trailing" secondItem="opv-4C-GRd" secondAttribute="trailing" constant="30" id="0OP-Ot-RIJ"/>
-                            <constraint firstItem="6DV-lU-fu5" firstAttribute="top" secondItem="opv-4C-GRd" secondAttribute="bottom" constant="10" id="CzV-CY-97c"/>
+                            <constraint firstItem="6DV-lU-fu5" firstAttribute="top" secondItem="opv-4C-GRd" secondAttribute="bottom" id="CzV-CY-97c"/>
                             <constraint firstItem="6DV-lU-fu5" firstAttribute="height" secondItem="blH-9R-orb" secondAttribute="height" multiplier="0.339286" id="PMK-Gp-eOh"/>
                             <constraint firstItem="rHj-Cb-MOX" firstAttribute="trailing" secondItem="6DV-lU-fu5" secondAttribute="trailing" constant="30" id="T1o-59-NuJ"/>
                             <constraint firstItem="opv-4C-GRd" firstAttribute="leading" secondItem="rHj-Cb-MOX" secondAttribute="leading" constant="30" id="XD9-eF-8V1"/>
@@ -145,10 +145,10 @@
                             <constraint firstItem="6DV-lU-fu5" firstAttribute="leading" secondItem="rHj-Cb-MOX" secondAttribute="leading" constant="30" id="Z7m-TA-edu"/>
                             <constraint firstItem="TZb-Xl-fee" firstAttribute="leading" secondItem="rHj-Cb-MOX" secondAttribute="leading" constant="30" id="afL-M5-Ack"/>
                             <constraint firstItem="rHj-Cb-MOX" firstAttribute="trailing" secondItem="Pqf-pQ-foS" secondAttribute="trailing" constant="30" id="cn8-NU-2j0"/>
-                            <constraint firstItem="opv-4C-GRd" firstAttribute="top" secondItem="TZb-Xl-fee" secondAttribute="bottom" constant="20" id="nXJ-TA-D8o"/>
+                            <constraint firstItem="opv-4C-GRd" firstAttribute="top" secondItem="TZb-Xl-fee" secondAttribute="bottom" constant="10" id="nXJ-TA-D8o"/>
                             <constraint firstItem="TZb-Xl-fee" firstAttribute="height" secondItem="blH-9R-orb" secondAttribute="height" multiplier="0.390625" id="pja-Vw-y6R"/>
                             <constraint firstItem="Pqf-pQ-foS" firstAttribute="leading" secondItem="rHj-Cb-MOX" secondAttribute="leading" constant="30" id="prU-r1-fST"/>
-                            <constraint firstItem="TZb-Xl-fee" firstAttribute="top" secondItem="rHj-Cb-MOX" secondAttribute="top" constant="20" id="qwl-pF-KE3"/>
+                            <constraint firstItem="TZb-Xl-fee" firstAttribute="top" secondItem="rHj-Cb-MOX" secondAttribute="top" id="qwl-pF-KE3"/>
                             <constraint firstItem="rHj-Cb-MOX" firstAttribute="trailing" secondItem="TZb-Xl-fee" secondAttribute="trailing" constant="30" id="wUH-Wu-aAS"/>
                         </constraints>
                     </view>
@@ -710,6 +710,7 @@
     <resources>
         <image name="backgroundImage2" width="1151" height="2048"/>
         <image name="backgroundImage3" width="1151" height="2048"/>
+        <image name="benchPress" width="602" height="563"/>
         <image name="firstExample" width="986" height="964"/>
         <image name="forCollection" width="1151" height="2048"/>
         <image name="lunges" width="904" height="906"/>

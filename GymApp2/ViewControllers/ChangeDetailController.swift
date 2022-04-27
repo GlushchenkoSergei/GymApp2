@@ -24,11 +24,32 @@ class ChangeDetailController: UIViewController, UITextFieldDelegate {
         image.clipsToBounds = true
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
     
-    //Функционал надо вынести в отдельный метод название которого будет говорить что происходит в этом методе
-    //Кроме того нужен делегат из библиотеки чтобы менял информацию после скрытия экрана
-    //Ну и пожалуй экран можно уменьшить, потому что на SE клавиатура скрывает все
+    //После скрытия экрана информация сохраняется Т.К. DataManage - синглТон
+    //Но только до момента закрытия приложения - так просто заготовка (после тем с данными обновить можно)
+    //Просто не придумал как лучше это реализовать: всю базу без защиты тоже плохо вроде как без защиты
+    
+    //Отступы и положнения контента на экране сдвинул стало получше. Но не идеал конечно
+    
     @IBAction func tapSave(_ sender: Any) {
+        changeDataExercise()
+    }
+
+    @IBAction func tapCancel(_ sender: Any) {
+        nameText.text = exercise.description
+        descriptionText.text = exercise.numberOfRepetitions
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
+    }
+    
+    private func changeDataExercise() {
         var counter = 0
         for exercises in DataManage.shared.exercises {
             if exercises.description == exercise.description {
@@ -40,22 +61,7 @@ class ChangeDetailController: UIViewController, UITextFieldDelegate {
             counter += 1
         }
     }
-        
-    @IBAction func tapCancel(_ sender: Any) {
-        nameText.text = exercise.description
-        descriptionText.text = exercise.numberOfRepetitions
-    }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        view.endEditing(true)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return true
-    }
-
 }
 
 

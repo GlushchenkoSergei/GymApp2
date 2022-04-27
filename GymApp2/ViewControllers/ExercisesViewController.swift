@@ -14,7 +14,6 @@ protocol ExercisesControllerProtocol {
 class ExercisesViewController: UIViewController{
     
     @IBOutlet var mainTableView: UITableView!
-    
     @IBOutlet weak var exerciseGroupsSegmentedControl: UISegmentedControl!
     
     private let userDefaults = UserDefaults.standard
@@ -31,9 +30,24 @@ class ExercisesViewController: UIViewController{
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailVC = segue.destination as? DetailController else { return }
+        guard let indexPath = mainTableView.indexPathForSelectedRow else { return }
+        detailVC.exercise = selectedExercises[indexPath.row]
+        detailVC.delegate = self
+    }
+    
+    
+    
     @IBAction func segmentControl(_ sender: UISegmentedControl) {
         selectExercise()
         mainTableView.reloadData()
+    }
+    
+    
+    func addExerciseToJournal() {
+        // здесь нужно реализовать метод сохранения в журнал
+        // exercisesForSaved
     }
     
     private func setValueControl() {
@@ -85,20 +99,6 @@ class ExercisesViewController: UIViewController{
                 }
             }
         }
-    }
-    
-    func addExerciseToJournal() {
-        // здесь надо реализовать метод сохранения в журнал
-        // exercisesForSaved
-    }
-    
-// MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detailVC = segue.destination as? DetailController else { return }
-        guard let indexPath = mainTableView.indexPathForSelectedRow else { return }
-        detailVC.exercise = selectedExercises[indexPath.row]
-        detailVC.delegate = self
     }
 }
 

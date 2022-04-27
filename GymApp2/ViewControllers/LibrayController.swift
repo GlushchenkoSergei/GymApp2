@@ -17,24 +17,11 @@ class LibraryController: UITableViewController {
     lazy var legs = getExercises(muscle: .legs)
     lazy var biceps = getExercises(muscle: .biceps)
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 80
     }
 
-    // MARK: - Table view data source
-    private func getExercises(muscle: MuscleGroup) -> [Exercise] {
-        var selectedExercises = [Exercise]()
-            for exercise in exercises {
-                if exercise.muscle == muscle {
-                    selectedExercises.append(exercise)
-                }
-            }
-        return selectedExercises
-    }
-    
-    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0: return "Triceps"
@@ -48,7 +35,7 @@ class LibraryController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         5
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return triceps.count
@@ -58,7 +45,7 @@ class LibraryController: UITableViewController {
         default: return biceps.count
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0: return setForContentRows(indexPath: indexPath, triceps: triceps)
@@ -67,7 +54,7 @@ class LibraryController: UITableViewController {
         case 3: return setForContentRows(indexPath: indexPath, triceps: legs)
         default: return setForContentRows(indexPath: indexPath, triceps: biceps)
         }
-     
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,18 +64,26 @@ class LibraryController: UITableViewController {
         changeVC.exercise = selectedSection[indexPath.row]
     }
     
+    
+    // MARK: - Table view data source
+    private func getExercises(muscle: MuscleGroup) -> [Exercise] {
+        var selectedExercises = [Exercise]()
+            for exercise in exercises {
+                if exercise.muscle == muscle {
+                    selectedExercises.append(exercise)
+                }
+            }
+        return selectedExercises
+    }
+    
+    
     private func selectedSection(_ at: IndexPath) -> [Exercise] {
         switch at.section {
-        case 0:
-            return triceps
-        case 1:
-            return breast
-        case 2:
-            return back
-        case 3:
-            return legs
-        default:
-            return biceps
+        case 0: return triceps
+        case 1: return breast
+        case 2: return back
+        case 3: return legs
+        default: return biceps
         }
     }
     

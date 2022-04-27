@@ -14,9 +14,10 @@ class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if userDefaults.array(forKey: "First") == nil {
-            userDefaults.setValue(["Спина", "Бицепс"], forKey: "First")
-            userDefaults.setValue(["Ноги"], forKey: "Second")
-            userDefaults.setValue(["Грудь", "Трицепс"], forKey: "Three")
+            userDefaults.setValue(["Грудь", "Трицепс"], forKey: "First")
+            userDefaults.setValue(["Бицепс", "Спина"], forKey: "Second")
+            userDefaults.setValue(["Ноги"], forKey: "Three")
+            
         }
     }
    

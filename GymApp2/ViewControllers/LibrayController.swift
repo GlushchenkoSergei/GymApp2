@@ -48,11 +48,11 @@ class LibraryController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0: return setForContentRows(indexPath: indexPath, triceps: triceps)
-        case 1: return setForContentRows(indexPath: indexPath, triceps: breast)
-        case 2: return setForContentRows(indexPath: indexPath, triceps: back)
-        case 3: return setForContentRows(indexPath: indexPath, triceps: legs)
-        default: return setForContentRows(indexPath: indexPath, triceps: biceps)
+        case 0: return setForContentRows(indexPath: indexPath, muscle: triceps)
+        case 1: return setForContentRows(indexPath: indexPath, muscle: breast)
+        case 2: return setForContentRows(indexPath: indexPath, muscle: back)
+        case 3: return setForContentRows(indexPath: indexPath, muscle: legs)
+        default: return setForContentRows(indexPath: indexPath, muscle: biceps)
         }
         
     }
@@ -87,12 +87,12 @@ class LibraryController: UITableViewController {
         }
     }
     
-    private func setForContentRows(indexPath: IndexPath, triceps: [Exercise] ) -> UITableViewCell {
+    private func setForContentRows(indexPath: IndexPath, muscle: [Exercise] ) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "library", for: indexPath)
         var content = cell.defaultContentConfiguration()
-        content.text = triceps[indexPath.row].description
-        content.secondaryText = triceps[indexPath.row].numberOfRepetitions
-        content.image = UIImage(named: triceps[indexPath.row].image)
+        content.text = muscle[indexPath.row].description
+        content.secondaryText = muscle[indexPath.row].numberOfRepetitions
+        content.image = UIImage(named: muscle[indexPath.row].image)
         cell.contentConfiguration = content
         return cell
     }

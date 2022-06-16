@@ -19,7 +19,6 @@ class ExercisesViewController: UIViewController{
     private let userDefaults = UserDefaults.standard
     
     private let exercises = DataManage.shared.exercises
-    
     private var selectedExercises = [Exercise]()
     private var exercisesForSaved = [Exercise]()
     
@@ -158,7 +157,6 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
     //MARK: - swipe action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -166,12 +164,10 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
         let exercise = selectedExercises[indexPath.row]
         
         let color = index ? #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1) : #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 1)
-        let image = index
-        ? UIImage(systemName: "multiply.circle.fill")
-        : UIImage(systemName: "checkmark.circle.fill")
+        let imageName = index ? "multiply.circle.fill": "checkmark.circle.fill"
         
         let actionDone = UIContextualAction(style: .normal, title: "done") { _, _, completion in
-        
+            
             if !self.exercisesForSaved.contains(exercise) {
                 self.exercisesForSaved.append(exercise)
                 print("Упражнение было добавленно")
@@ -180,19 +176,16 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
                 self.exercisesForSaved.remove(at: index)
                 print("Упражнение было удалено")
             }
-            
             self.updateUserData()
-            
             tableView.reloadRows(at: [indexPath], with: .automatic)
                completion(true)
         }
         
-        actionDone.image = image
+        actionDone.image = UIImage(systemName: imageName)
         actionDone.backgroundColor = color
         
         return UISwipeActionsConfiguration(actions: [actionDone])
     }
-    
     
 }
 

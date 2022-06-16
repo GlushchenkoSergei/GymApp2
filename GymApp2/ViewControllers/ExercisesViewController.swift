@@ -135,8 +135,8 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
         
         let exercise = selectedExercises[indexPath.row]
         var content = cell.defaultContentConfiguration()
-        content.textProperties.color = UIColor(red: 0/255, green: 169/255, blue: 209/255, alpha: 1)
-        content.secondaryTextProperties.color = .gray
+        content.textProperties.color = #colorLiteral(red: 0, green: 0.798466444, blue: 0.9789896607, alpha: 0.7078630743)
+        content.secondaryTextProperties.color = .white
         content.text = exercise.description
         content.secondaryText = exercise.numberOfRepetitions
         content.image = UIImage(named: exercise.image)
@@ -144,10 +144,12 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.contentConfiguration = content
         
         if exercisesForSaved.contains(exercise) {
-            cell.backgroundColor = #colorLiteral(red: 0.09485692531, green: 0.1359011829, blue: 1, alpha: 0.3657351867)
+            cell.backgroundColor = #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 0.38)
+
             cell.layer.cornerRadius = cell.frame.height / 4
         } else {
             cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            content.secondaryTextProperties.color = .gray
         }
         
         return cell
@@ -163,18 +165,16 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
         let index = exercisesForSaved.contains(selectedExercises[indexPath.row])
         let exercise = selectedExercises[indexPath.row]
         
-        let color = index ? #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1) : #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 1)
+        let color = index ? #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1) : #colorLiteral(red: 0, green: 0.798466444, blue: 0.9789896607, alpha: 0.4459887048)
         let imageName = index ? "multiply.circle.fill": "checkmark.circle.fill"
         
         let actionDone = UIContextualAction(style: .normal, title: "done") { _, _, completion in
             
             if !self.exercisesForSaved.contains(exercise) {
                 self.exercisesForSaved.append(exercise)
-                print("Упражнение было добавленно")
             } else {
                 guard let index = self.exercisesForSaved.firstIndex(of: exercise) else { return }
                 self.exercisesForSaved.remove(at: index)
-                print("Упражнение было удалено")
             }
             self.updateUserData()
             tableView.reloadRows(at: [indexPath], with: .automatic)

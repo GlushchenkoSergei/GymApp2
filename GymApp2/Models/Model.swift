@@ -5,7 +5,7 @@
 //  Created by mac on 23.04.2022.
 //
 
-func test(test: String) {}
+//func test(test: String) {}
 
 struct Exercise {
     var description: String

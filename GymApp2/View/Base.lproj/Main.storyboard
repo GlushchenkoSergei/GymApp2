@@ -625,7 +625,7 @@
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZh-ij-KuH">
                                 <rect key="frame" x="134" y="831" width="146" height="31"/>
-                                <color key="backgroundColor" red="0.33333334329999997" green="0.33333334329999997" blue="0.33333334329999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Выполнил"/>
@@ -635,7 +635,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="tapDone:" destination="dkH-3P-CPz" eventType="touchUpInside" id="62Y-cY-dZH"/>
+                                    <action selector="tapDoneButton:" destination="dkH-3P-CPz" eventType="touchUpInside" id="7Pj-kW-B2u"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -664,6 +664,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="yW4-dm-TV9"/>
                     <connections>
+                        <outlet property="doneButton" destination="QZh-ij-KuH" id="0qm-xj-Dz7"/>
                         <outlet property="image" destination="V7U-gB-xGn" id="0RZ-OD-i9F"/>
                         <outlet property="nameLabel" destination="PRF-JM-6hQ" id="Vjq-ca-TXX"/>
                     </connections>

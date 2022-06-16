@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ExercisesControllerProtocol {
-    func saveExercise(exercise: Exercise)
+    func saveExercise(exercises: [Exercise])
 }
 
 class ExercisesViewController: UIViewController{
@@ -19,30 +19,28 @@ class ExercisesViewController: UIViewController{
     private let userDefaults = UserDefaults.standard
     
     private let exercises = DataManage.shared.exercises
+    
     private var selectedExercises = [Exercise]()
     private var exercisesForSaved = [Exercise]()
-    
-    // Массивы для сохранения индексов упражнений в дневник
-    var indexesDoneExercises = [String: Bool]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setValueControl()
         selectExercise()
-        
-//        updateCompletedExercise()
-        
         mainTableView.rowHeight = 80
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        selectExercise()
+        mainTableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let detailVC = segue.destination as? DetailController else { return }
         guard let indexPath = mainTableView.indexPathForSelectedRow else { return }
         detailVC.exercise = selectedExercises[indexPath.row]
+        detailVC.exercisesForSaved = exercisesForSaved
         detailVC.delegate = self
-        
     }
     
     @IBAction func segmentControl(_ sender: UISegmentedControl) {
@@ -106,48 +104,23 @@ class ExercisesViewController: UIViewController{
         }
     }
     
-    
     private func updateCompletedExercise() {
-        let selectedSegmentIndex = exerciseGroupsSegmentedControl.selectedSegmentIndex
-        let stringIndex = String(selectedSegmentIndex) + "done"
-        
-        if userDefaults.dictionary(forKey: stringIndex) != nil {
-            print("В юзер дефолтс значение")
-            indexesDoneExercises = userDefaults.dictionary(forKey: stringIndex) as! [String: Bool]
-            print("Востановил значение из юзер дефолтс")
-        } else {
-            print("не получил значения собираю массив")
-            insertBoolValue()
-            updateUserData()
-        }
-        for value in indexesDoneExercises {
-            print(value)
-        }
+        guard let data = userDefaults.value(forKey: "done") as? Data else { return }
+        guard let decoder = try? JSONDecoder().decode([Exercise].self, from: data) else { return }
+        exercisesForSaved = decoder
     }
-    
-    private func insertBoolValue() {
-        for index in 0..<selectedExercises.count {
-            indexesDoneExercises.updateValue(false, forKey: String(index))
-        }
-        print("массив собрал!!!!!!!!!!!!!!!!!!!!!")
-    }
-        
+
        private func updateUserData() {
-           
-           let selectedSegmentIndex = exerciseGroupsSegmentedControl.selectedSegmentIndex
-           let stringIndex = String(selectedSegmentIndex) + "done"
-           
-           userDefaults.setValue(indexesDoneExercises, forKey: stringIndex)
-           print("Загрузил в юзер дефолтс!!!!!!!!!!!!")
+           guard let encodeData = try? JSONEncoder().encode(exercisesForSaved) else { return }
+           userDefaults.setValue(encodeData, forKeyPath: "done")
     }
     
 }
 
 // MARK: - Настройка делегирования
 extension ExercisesViewController: ExercisesControllerProtocol {
-    
-    func saveExercise(exercise: Exercise) {
-        exercisesForSaved.append(exercise)
+    func saveExercise(exercises: [Exercise]) {
+        exercisesForSaved = exercises
     }
 }
 
@@ -161,18 +134,17 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "showExercises", for: indexPath)
         
-        let exercises = selectedExercises[indexPath.row]
+        let exercise = selectedExercises[indexPath.row]
         var content = cell.defaultContentConfiguration()
         content.textProperties.color = UIColor(red: 0/255, green: 169/255, blue: 209/255, alpha: 1)
         content.secondaryTextProperties.color = .gray
-        content.text = exercises.description
-        content.secondaryText = exercises.numberOfRepetitions
-        content.image = UIImage(named: exercises.image)
+        content.text = exercise.description
+        content.secondaryText = exercise.numberOfRepetitions
+        content.image = UIImage(named: exercise.image)
         content.imageProperties.maximumSize = CGSize(width: 70, height: 70)
         cell.contentConfiguration = content
         
-        if indexesDoneExercises[String(indexPath.row)] == true {
-            //            cell.layer.insertSublayer(setColorCell(frame: cell.bounds), at: 1)
+        if exercisesForSaved.contains(exercise) {
             cell.backgroundColor = #colorLiteral(red: 0.09485692531, green: 0.1359011829, blue: 1, alpha: 0.3657351867)
             cell.layer.cornerRadius = cell.frame.height / 4
         } else {
@@ -189,14 +161,26 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - swipe action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let index = self.indexesDoneExercises[String(indexPath.row)] else { return nil}
+        
+        let index = exercisesForSaved.contains(selectedExercises[indexPath.row])
+        let exercise = selectedExercises[indexPath.row]
+        
         let color = index ? #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1) : #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 1)
         let image = index
         ? UIImage(systemName: "multiply.circle.fill")
         : UIImage(systemName: "checkmark.circle.fill")
         
         let actionDone = UIContextualAction(style: .normal, title: "done") { _, _, completion in
-            self.indexesDoneExercises[String(indexPath.row)] = index ? false : true
+        
+            if !self.exercisesForSaved.contains(exercise) {
+                self.exercisesForSaved.append(exercise)
+                print("Упражнение было добавленно")
+            } else {
+                guard let index = self.exercisesForSaved.firstIndex(of: exercise) else { return }
+                self.exercisesForSaved.remove(at: index)
+                print("Упражнение было удалено")
+            }
+            
             self.updateUserData()
             
             tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -211,19 +195,5 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
     
     
 }
-
-//extension ExercisesViewController {
-//
-//    func setColorCell(frame: CGRect) -> CAGradientLayer {
-//        let color1 = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.0).cgColor
-////        let color2 = UIColor(red: 151/255, green: 172/255, blue: 201/255, alpha: 0.5).cgColor
-//        let color2 = #colorLiteral(red: 0, green: 1, blue: 0, alpha: 0.1659151797).cgColor
-//        let color3 = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.0).cgColor
-//        let gradientLayer = CAGradientLayer()
-//        gradientLayer.frame = frame
-//        gradientLayer.colors = [color1, color2, color3]
-//        return gradientLayer
-//    }
-//}
 
 

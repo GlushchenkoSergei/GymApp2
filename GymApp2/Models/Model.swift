@@ -7,14 +7,14 @@
 
 //func test(test: String) {}
 
-struct Exercise {
+struct Exercise: Equatable, Codable {
     var description: String
     var image: String
     var numberOfRepetitions: String
     let muscle: MuscleGroup
 }
 
-enum MuscleGroup: String {
+enum MuscleGroup: String, Codable {
     case biceps = "Бицепс"
     case triceps = "Трицепс"
     case breast = "Грудь"

@@ -29,6 +29,7 @@ class SettingsViewController: UIViewController {
         
         selectSegment()
         outletStepper.layer.cornerRadius = outletStepper.frame.height / 5
+        outletSegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
     
     @IBAction func Stepper(_ sender: UIStepper) {

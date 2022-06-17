@@ -13,6 +13,7 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBar()
         if userDefaults.array(forKey: "First") == nil {
             userDefaults.setValue(["Грудь", "Трицепс"], forKey: "First")
             userDefaults.setValue(["Бицепс", "Спина"], forKey: "Second")
@@ -32,4 +33,9 @@ class StartViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    private func setNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.barStyle = .black
+        
+    }
 }

@@ -22,16 +22,18 @@ class ExercisesViewController: UIViewController{
     private var selectedExercises = [Exercise]()
     private var exercisesForSaved = [Exercise]()
     
+    let itemTimer = UINavigationItem(title: "Таймер")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setValueControl()
         selectExercise()
         mainTableView.rowHeight = 80
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        selectExercise()
-        mainTableView.reloadData()
+        mainTableView.separatorColor = .black
+        
+        exerciseGroupsSegmentedControl.setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal
+        )
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -120,6 +122,7 @@ class ExercisesViewController: UIViewController{
 extension ExercisesViewController: ExercisesControllerProtocol {
     func saveExercise(exercises: [Exercise]) {
         exercisesForSaved = exercises
+        mainTableView.reloadData()
     }
 }
 
@@ -145,11 +148,10 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
         
         if exercisesForSaved.contains(exercise) {
             cell.backgroundColor = #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 0.38)
-
-            cell.layer.cornerRadius = cell.frame.height / 4
+            cell.layer.cornerRadius = cell.frame.height / 10
         } else {
             cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            content.secondaryTextProperties.color = .gray
+            
         }
         
         return cell

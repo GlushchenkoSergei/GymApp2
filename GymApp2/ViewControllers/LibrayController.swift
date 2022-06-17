@@ -20,6 +20,7 @@ class LibraryController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 80
+        
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -87,12 +88,19 @@ class LibraryController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     private func setForContentRows(indexPath: IndexPath, muscle: [Exercise] ) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "library", for: indexPath)
         var content = cell.defaultContentConfiguration()
         content.text = muscle[indexPath.row].description
+        content.textProperties.color = #colorLiteral(red: 0, green: 0.798466444, blue: 0.9789896607, alpha: 0.7078630743)
+        content.secondaryTextProperties.color = .gray
         content.secondaryText = muscle[indexPath.row].numberOfRepetitions
         content.image = UIImage(named: muscle[indexPath.row].image)
+        content.imageProperties.maximumSize = CGSize(width: 70, height: 70)
         cell.contentConfiguration = content
         return cell
     }

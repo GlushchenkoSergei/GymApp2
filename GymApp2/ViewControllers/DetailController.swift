@@ -23,7 +23,6 @@ class DetailController: UIViewController {
         super.viewDidLoad()
         image.image = UIImage(named: exercise.image)
         nameLabel.text = exercise.description
-        image.layer.cornerRadius = image.frame.size.width / 20
         image.clipsToBounds = true
         doneButton.backgroundColor = setColorButton()
     }
@@ -31,15 +30,16 @@ class DetailController: UIViewController {
     
     
     @IBAction func tapDoneButton(_ sender: UIButton) {
-
         checkSavedExercises()
-        
         doneButton.backgroundColor = setColorButton()
         delegate.saveExercise(exercises: exercisesForSaved)
-        
         updateUserData()
+        self.dismiss(animated: true)
     }
     
+    @IBAction func tapBackButton(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     
     private func checkSavedExercises() {
         if !exercisesForSaved.contains(exercise) {

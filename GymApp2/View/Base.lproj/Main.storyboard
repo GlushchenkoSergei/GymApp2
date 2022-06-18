@@ -396,7 +396,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="59" translatesAutoresizingMaskIntoConstraints="NO" id="XCb-tA-DVQ">
-                                <rect key="frame" x="30" y="332" width="354" height="232"/>
+                                <rect key="frame" x="30" y="380.5" width="354" height="135"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWb-kz-ApG">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="38"/>
@@ -431,22 +431,6 @@
                                             <segue destination="vql-Du-eBJ" kind="show" id="1qt-n9-Ayl"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2G-Ah-sKW">
-                                        <rect key="frame" x="0.0" y="194" width="354" height="38"/>
-                                        <color key="backgroundColor" red="0.28032949569999999" green="0.5944413543" blue="0.70199918750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                        <color key="tintColor" red="0.064106382429999997" green="0.09774351865" blue="0.1176536158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Настройки"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <segue destination="Caw-a7-ZVv" kind="show" id="fhF-rM-dL4"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsK-zt-T4x">
@@ -459,16 +443,39 @@
                                     <action selector="tapAboutUs:" destination="5Oe-xR-GYq" eventType="touchUpInside" id="jAa-2T-Nns"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2G-Ah-sKW">
+                                <rect key="frame" x="348" y="44" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.28032949569999999" green="0.5944413543" blue="0.70199918750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="AhK-Hp-uaF"/>
+                                    <constraint firstAttribute="width" constant="50" id="vR7-rz-x1g"/>
+                                </constraints>
+                                <color key="tintColor" red="0.064106382429999997" green="0.09774351865" blue="0.1176536158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="gear" catalog="system" symbolScale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="Caw-a7-ZVv" kind="show" id="fhF-rM-dL4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GpQ-Lg-uf9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fsK-zt-T4x" firstAttribute="centerX" secondItem="MoI-jA-NWt" secondAttribute="centerX" id="5Rn-Zq-6wY"/>
                             <constraint firstItem="XCb-tA-DVQ" firstAttribute="centerY" secondItem="MoI-jA-NWt" secondAttribute="centerY" id="K46-P6-tZu"/>
+                            <constraint firstItem="Y2G-Ah-sKW" firstAttribute="top" secondItem="GpQ-Lg-uf9" secondAttribute="top" id="Kek-ae-jH9"/>
                             <constraint firstItem="fsK-zt-T4x" firstAttribute="width" secondItem="MoI-jA-NWt" secondAttribute="width" multiplier="0.461353" id="KwZ-xw-yai"/>
                             <constraint firstItem="XCb-tA-DVQ" firstAttribute="centerX" secondItem="MoI-jA-NWt" secondAttribute="centerX" id="W4i-vJ-kgX"/>
                             <constraint firstItem="GpQ-Lg-uf9" firstAttribute="trailing" secondItem="XCb-tA-DVQ" secondAttribute="trailing" constant="30" id="mpg-2b-11u"/>
                             <constraint firstItem="XCb-tA-DVQ" firstAttribute="leading" secondItem="GpQ-Lg-uf9" secondAttribute="leading" constant="30" id="n11-Kh-Sjb"/>
+                            <constraint firstItem="GpQ-Lg-uf9" firstAttribute="trailing" secondItem="Y2G-Ah-sKW" secondAttribute="trailing" constant="16" id="ra1-bm-Xj9"/>
                             <constraint firstItem="fsK-zt-T4x" firstAttribute="bottom" secondItem="GpQ-Lg-uf9" secondAttribute="bottom" id="uJG-Na-2E6"/>
                         </constraints>
                     </view>
@@ -830,6 +837,7 @@
         <image name="clock.arrow.circlepath" catalog="system" width="128" height="110"/>
         <image name="firstExample" width="986" height="964"/>
         <image name="forCollection" width="1151" height="2048"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="lunges" width="904" height="906"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

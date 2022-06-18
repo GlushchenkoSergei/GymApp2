@@ -37,6 +37,7 @@ class ExercisesViewController: UIViewController {
             [.foregroundColor: UIColor.white], for: .normal
         )
         setRightButtonItem()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -64,6 +65,10 @@ class ExercisesViewController: UIViewController {
     @objc private func addExerciseToJournal() {
         addValuesForEntity()
         StorageManager.shared.saveContext()
+        
+        exercisesForSaved.removeAll()
+        updateUserData()
+        mainTableView.reloadData()
         
         let alert = UIAlertController(title: "Тренеровка сохранена", message: "", preferredStyle: .alert)
         present(alert, animated: true)

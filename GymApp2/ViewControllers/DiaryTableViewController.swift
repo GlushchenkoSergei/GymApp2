@@ -17,7 +17,7 @@ class DiaryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationController()
+        
         setRightButtonItem()
         
         diaryList = StorageManager.shared.fetchData()
@@ -33,30 +33,19 @@ class DiaryTableViewController: UITableViewController {
         diaryDetailVC.exercisesNS = exercisesNS
     }
     
-    
-    
-    private func setNavigationController() {
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.backgroundColor = .red
-        navigationController?.navigationBar.standardAppearance = navBarAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
 
-    }
-    
-    
-    
     private func setRightButtonItem() {
         let save = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveAction))
         
        navigationItem.setRightBarButtonItems([save], animated: true)
     }
+    
     @objc private func saveAction() {
-        print("worck")
+       
     }
     
     
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         diaryList.count
     }

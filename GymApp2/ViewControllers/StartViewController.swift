@@ -19,6 +19,8 @@ class StartViewController: UIViewController {
             userDefaults.setValue(["Бицепс", "Спина"], forKey: "Second")
             userDefaults.setValue(["Ноги"], forKey: "Three")
         }
+        
+    
     }
    
     @IBAction func buttonDiary(_ sender: Any) {

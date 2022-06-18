@@ -28,8 +28,6 @@ class StorageManager {
         return container
     }()
     
-    
-    
     func fetchData () -> [WorkoutNS] {
         var array: [WorkoutNS] = []
         
@@ -42,28 +40,12 @@ class StorageManager {
         
         return array
     }
-    
-    
-    func fetchWorkoutNS(_ workoutNS: WorkoutNS) -> [ExercisesNS] {
-        var array: [ExercisesNS] = []
-        let fetchRequest = ExercisesNS.fetchRequest()
         
-        let fetchRequestFromWorkout = workoutNS.exercises?.allObjects as? [WorkoutNS]
-        
-        do {
-            array = try context.fetch(fetchRequest)
-        } catch let error {
-            print("Ошибка в получении данных", error)
-        }
-        return array
-    }
-    
     func createTypeWorkoutNS() -> WorkoutNS? {
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "WorkoutNS", in: context) else { return nil}
         guard let workoutNS = NSManagedObject(entity: entityDescription, insertInto: context) as? WorkoutNS else { return nil}
         return workoutNS
     }
-    
     
     func createTypeExercisesNS() -> ExercisesNS? {
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "ExercisesNS", in: context) else { return nil}

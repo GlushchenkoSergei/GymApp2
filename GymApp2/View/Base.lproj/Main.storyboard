@@ -428,6 +428,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="buttonDiary:" destination="5Oe-xR-GYq" eventType="touchUpInside" id="7lQ-NM-ufr"/>
+                                            <segue destination="vql-Du-eBJ" kind="show" id="1qt-n9-Ayl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2G-Ah-sKW">
@@ -538,6 +539,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kEh-r3-9Si" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1522" y="810"/>
+        </scene>
+        <!--Diary Table View Controller-->
+        <scene sceneID="vGj-1T-276">
+            <objects>
+                <tableViewController id="vql-Du-eBJ" customClass="DiaryTableViewController" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ybc-pd-VM2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="dateCell" id="QMS-xc-xwc">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QMS-xc-xwc" id="Ikj-8X-Nmd">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Tnd-qP-RDK" kind="show" id="dPJ-yB-6qc"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vql-Du-eBJ" id="u8C-2f-TYD"/>
+                            <outlet property="delegate" destination="vql-Du-eBJ" id="ysT-lD-I8v"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="n8J-vM-tGp"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jd4-5u-Tpc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1258" y="-676"/>
+        </scene>
+        <!--Diary Detail Table View Controller-->
+        <scene sceneID="OhQ-Cw-YjG">
+            <objects>
+                <tableViewController id="Tnd-qP-RDK" customClass="DiaryDetailTableViewController" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="zFP-9s-Kkj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="diaryDetail" id="c4s-ZN-CbE">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c4s-ZN-CbE" id="0OM-Mt-Zzz">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Tnd-qP-RDK" id="JT7-OR-zYl"/>
+                            <outlet property="delegate" destination="Tnd-qP-RDK" id="fV5-pK-W0t"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="7Pf-7C-90d"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jDu-pn-Oza" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2286" y="-676"/>
         </scene>
         <!--Тренеровка-->
         <scene sceneID="e6d-Sn-16j">

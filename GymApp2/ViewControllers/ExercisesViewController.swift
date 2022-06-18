@@ -6,17 +6,19 @@
 //
 
 import UIKit
+import CoreData
 
 protocol ExercisesControllerProtocol {
     func saveExercise(exercises: [Exercise])
 }
 
-class ExercisesViewController: UIViewController{
+class ExercisesViewController: UIViewController {
     
     @IBOutlet var mainTableView: UITableView!
     @IBOutlet weak var exerciseGroupsSegmentedControl: UISegmentedControl!
     
     private let userDefaults = UserDefaults.standard
+    
     
     private let exercises = DataManage.shared.exercises
     private var selectedExercises = [Exercise]()
@@ -32,8 +34,9 @@ class ExercisesViewController: UIViewController{
         mainTableView.separatorColor = .black
         
         exerciseGroupsSegmentedControl.setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal
+            [.foregroundColor: UIColor.white], for: .normal
         )
+        setRightButtonItem()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,10 +52,43 @@ class ExercisesViewController: UIViewController{
         mainTableView.reloadData()
     }
     
-    func addExerciseToJournal() {
-        // здесь нужно реализовать метод сохранения в журнал
-        // exercisesForSaved
+    private func setRightButtonItem() {
+        let save = UIBarButtonItem(barButtonSystemItem: .save,
+                                   target: self,
+                                   action: #selector(addExerciseToJournal))
+       navigationItem.setRightBarButtonItems([save], animated: true)
     }
+    
+    @objc private func addExerciseToJournal() {
+        let context = StorageManager.shared.context
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "WorkoutNS", in: context) else { return }
+        guard let workoutNS = NSManagedObject(entity: entityDescription, insertInto: context) as? WorkoutNS else { return }
+        workoutNS.date = Date()
+
+        
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "ExercisesNS", in: context) else { return }
+        guard let exercisesNS = NSManagedObject(entity: entityDescription, insertInto: context) as? ExercisesNS else { return }
+        
+        var array: [ExercisesNS] = []
+        
+        for exercise in exercisesForSaved {
+            exercisesNS.descr = exercise.description
+            exercisesNS.image = exercise.image
+            exercisesNS.numberOfRepetitions = exercise.numberOfRepetitions
+            array.append(exercisesNS)
+        }
+        
+        workoutNS.exercises = [array]
+
+        
+        StorageManager.shared.saveContext()
+        let alert = UIAlertController(title: "Тренеровка сохранена", message: "", preferredStyle: .alert)
+        present(alert, animated: true)
+        dismiss(animated: true)
+    }
+    
+    
+    
     
     private func setValueControl() {
         guard userDefaults.array(forKey: "numberSegment") != nil else { return }

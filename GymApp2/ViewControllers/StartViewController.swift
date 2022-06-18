@@ -22,8 +22,8 @@ class StartViewController: UIViewController {
     }
    
     @IBAction func buttonDiary(_ sender: Any) {
-        let alert = alert(with: "In next update", and: "Скоро релиз ф-ци дневника")
-        present(alert, animated: true)
+//        let alert = alert(with: "In next update", and: "Скоро релиз ф-ци дневника")
+//        present(alert, animated: true)
         
     }
     

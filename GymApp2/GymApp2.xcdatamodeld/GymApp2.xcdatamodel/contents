@@ -12,6 +12,6 @@
     </entity>
     <elements>
         <element name="ExercisesNS" positionX="-96.8292236328125" positionY="139.9880981445312" width="128" height="103"/>
-        <element name="WorkoutNS" positionX="-424.19775390625" positionY="-56.93072509765625" width="128" height="73"/>
+        <element name="WorkoutNS" positionX="-424.19775390625" positionY="-56.93072509765625" width="128" height="59"/>
     </elements>
 </model>

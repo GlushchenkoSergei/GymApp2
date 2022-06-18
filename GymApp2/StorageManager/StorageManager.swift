@@ -58,6 +58,18 @@ class StorageManager {
         return array
     }
     
+    func createTypeWorkoutNS() -> WorkoutNS? {
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "WorkoutNS", in: context) else { return nil}
+        guard let workoutNS = NSManagedObject(entity: entityDescription, insertInto: context) as? WorkoutNS else { return nil}
+        return workoutNS
+    }
+    
+    
+    func createTypeExercisesNS() -> ExercisesNS? {
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "ExercisesNS", in: context) else { return nil}
+        guard let exercisesNS = NSManagedObject(entity: entityDescription, insertInto: context) as? ExercisesNS else { return nil}
+        return exercisesNS
+    }
     
     // MARK: - Core Data Saving support
     func saveContext () {

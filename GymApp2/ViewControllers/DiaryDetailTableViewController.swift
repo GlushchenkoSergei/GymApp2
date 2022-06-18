@@ -13,7 +13,7 @@ class DiaryDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.rowHeight = 80
      
     }
 
@@ -27,6 +27,9 @@ class DiaryDetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "diaryDetail", for: indexPath)
         var content = cell.defaultContentConfiguration()
         content.text = exercisesNS[indexPath.row].descr
+        content.secondaryText = exercisesNS[indexPath.row].numberOfRepetitions
+        content.image = UIImage(named: exercisesNS[indexPath.row].image ?? "002")
+
         content.textProperties.color = .red
         
         cell.contentConfiguration = content

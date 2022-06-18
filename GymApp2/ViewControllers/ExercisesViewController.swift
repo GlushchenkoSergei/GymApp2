@@ -59,35 +59,34 @@ class ExercisesViewController: UIViewController {
        navigationItem.setRightBarButtonItems([save], animated: true)
     }
     
+    
+    
     @objc private func addExerciseToJournal() {
-        let context = StorageManager.shared.context
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "WorkoutNS", in: context) else { return }
-        guard let workoutNS = NSManagedObject(entity: entityDescription, insertInto: context) as? WorkoutNS else { return }
-        workoutNS.date = Date()
-
-        
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "ExercisesNS", in: context) else { return }
-        guard let exercisesNS = NSManagedObject(entity: entityDescription, insertInto: context) as? ExercisesNS else { return }
-        
-        var array: [ExercisesNS] = []
-        
-        for exercise in exercisesForSaved {
-            exercisesNS.descr = exercise.description
-            exercisesNS.image = exercise.image
-            exercisesNS.numberOfRepetitions = exercise.numberOfRepetitions
-            array.append(exercisesNS)
-        }
-        
-        workoutNS.exercises = [array]
-
-        
+        addValuesForEntity()
         StorageManager.shared.saveContext()
+        
         let alert = UIAlertController(title: "Тренеровка сохранена", message: "", preferredStyle: .alert)
         present(alert, animated: true)
         dismiss(animated: true)
     }
     
-    
+    private func addValuesForEntity() {
+        var arrayExercisesNS: [ExercisesNS] = []
+        
+        guard let workoutNS = StorageManager.shared.createTypeWorkoutNS() else { return }
+
+        for index in 0..<exercisesForSaved.count {
+            guard let exercisesNS = StorageManager.shared.createTypeExercisesNS() else { return }
+            exercisesNS.descr = exercisesForSaved[index].description
+            exercisesNS.image = exercisesForSaved[index].image
+            exercisesNS.numberOfRepetitions = exercisesForSaved[index].numberOfRepetitions
+            arrayExercisesNS.append(exercisesNS)
+    }
+        let setExercisesNS = Set(arrayExercisesNS) as? NSSet
+        
+        workoutNS.date = Date()
+        workoutNS.exercises = setExercisesNS
+    }
     
     
     private func setValueControl() {

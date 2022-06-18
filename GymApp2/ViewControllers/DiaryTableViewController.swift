@@ -23,9 +23,6 @@ class DiaryTableViewController: UITableViewController {
         diaryList = StorageManager.shared.fetchData()
         guard let exercisesNS = diaryList.last?.exercises?.allObjects as? [ExercisesNS] else { return }
    
-        print(exercisesNS[0].numberOfRepetitions ?? "ничего")
-        print(exercisesNS[0].descr ?? "ничего")
-        print(exercisesNS[0].image ?? "ничего")
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

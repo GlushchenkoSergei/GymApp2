@@ -15,3 +15,16 @@ func alert(with title: String, and message: String) -> UIAlertController {
 }
 
 
+func alertForDiary(completionOne: @escaping () -> Void, completionTwo: @escaping () -> Void) -> UIAlertController {
+    let alert = UIAlertController(title: "Имеется не завершенная тренировка", message: "", preferredStyle: .alert)
+    let alertAction2 = UIAlertAction(title: "Завершить и сохранить ✅", style: .default) { _ in
+        completionTwo()
+    }
+    let alertAction = UIAlertAction(title: "Не сохранять", style: .default) { _ in
+        completionOne()
+    }
+    alert.addAction(alertAction)
+    alert.addAction(alertAction2)
+    return alert
+}
+

@@ -40,16 +40,43 @@ class StorageManager {
         
         return array
     }
+    
+    func addValuesForEntity(from exercisesForSaved: [Exercise], date: Date? = Date()) {
+        guard let workoutNS = StorageManager.shared.createTypeWorkoutNS() else { return }
+        workoutNS.date = date
         
+        var arrayExercisesNS: [ExercisesNS] = []
+        
+        for index in 0..<exercisesForSaved.count {
+            guard let exercisesNS = StorageManager.shared.createTypeExercisesNS() else { return }
+            exercisesNS.descr = exercisesForSaved[index].description
+            exercisesNS.image = exercisesForSaved[index].image
+            exercisesNS.numberOfRepetitions = exercisesForSaved[index].numberOfRepetitions
+            arrayExercisesNS.append(exercisesNS)
+        }
+        let setExercisesNS = Set(arrayExercisesNS) as? NSSet
+        workoutNS.exercises = setExercisesNS
+    }
+    
     func createTypeWorkoutNS() -> WorkoutNS? {
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "WorkoutNS", in: context) else { return nil}
-        guard let workoutNS = NSManagedObject(entity: entityDescription, insertInto: context) as? WorkoutNS else { return nil}
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "WorkoutNS", in: context)
+        else { return nil}
+        
+        guard let workoutNS = NSManagedObject(entity: entityDescription,
+                                              insertInto: context) as? WorkoutNS
+        else { return nil}
+        
         return workoutNS
     }
     
     func createTypeExercisesNS() -> ExercisesNS? {
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "ExercisesNS", in: context) else { return nil}
-        guard let exercisesNS = NSManagedObject(entity: entityDescription, insertInto: context) as? ExercisesNS else { return nil}
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "ExercisesNS", in: context)
+        else { return nil}
+        
+        guard let exercisesNS = NSManagedObject(entity: entityDescription,
+                                                insertInto: context) as? ExercisesNS
+        else { return nil}
+        
         return exercisesNS
     }
     

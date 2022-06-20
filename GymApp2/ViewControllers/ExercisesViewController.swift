@@ -19,7 +19,6 @@ class ExercisesViewController: UIViewController {
     
     private let userDefaults = UserDefaults.standard
     
-    
     private let exercises = DataManage.shared.exercises
     private var selectedExercises = [Exercise]()
     private var exercisesForSaved = [Exercise]()
@@ -37,7 +36,6 @@ class ExercisesViewController: UIViewController {
             [.foregroundColor: UIColor.white], for: .normal
         )
         setRightButtonItem()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -56,14 +54,22 @@ class ExercisesViewController: UIViewController {
     private func setRightButtonItem() {
         let save = UIBarButtonItem(barButtonSystemItem: .save,
                                    target: self,
-                                   action: #selector(addExerciseToJournal))
-       navigationItem.setRightBarButtonItems([save], animated: true)
+                                   action: #selector(addExerciseToDiary))
+        
+        let timer = UIBarButtonItem(image: UIImage(systemName: "clock.arrow.circlepath"),
+                                    style: .done,
+                                    target: self,
+                                    action: #selector(openTimer))
+        
+       navigationItem.setRightBarButtonItems([save, timer], animated: true)
     }
     
+    @objc private func openTimer() {
+        // открыть контроллер таймер
+    }
     
-    
-    @objc private func addExerciseToJournal() {
-        addValuesForEntity()
+    @objc private func addExerciseToDiary() {
+        StorageManager.shared.addValuesForEntity(from: exercisesForSaved, date: Date())
         StorageManager.shared.saveContext()
         
         exercisesForSaved.removeAll()
@@ -75,23 +81,7 @@ class ExercisesViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func addValuesForEntity() {
-        var arrayExercisesNS: [ExercisesNS] = []
-        
-        guard let workoutNS = StorageManager.shared.createTypeWorkoutNS() else { return }
-
-        for index in 0..<exercisesForSaved.count {
-            guard let exercisesNS = StorageManager.shared.createTypeExercisesNS() else { return }
-            exercisesNS.descr = exercisesForSaved[index].description
-            exercisesNS.image = exercisesForSaved[index].image
-            exercisesNS.numberOfRepetitions = exercisesForSaved[index].numberOfRepetitions
-            arrayExercisesNS.append(exercisesNS)
-    }
-        let setExercisesNS = Set(arrayExercisesNS) as? NSSet
-        
-        workoutNS.date = Date()
-        workoutNS.exercises = setExercisesNS
-    }
+  
     
     
     private func setValueControl() {

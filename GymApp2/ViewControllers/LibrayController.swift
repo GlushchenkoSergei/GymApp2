@@ -20,7 +20,7 @@ class LibraryController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 80
-        
+        setRightButtonItem()
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -103,6 +103,15 @@ class LibraryController: UITableViewController {
         content.imageProperties.maximumSize = CGSize(width: 70, height: 70)
         cell.contentConfiguration = content
         return cell
+    }
+    
+    private func setRightButtonItem() {
+        let save = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addAction))
+       navigationItem.setRightBarButtonItems([save], animated: true)
+    }
+    
+    @objc private func addAction() {
+       // Добавление нового упражнения
     }
 }
 

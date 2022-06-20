@@ -9,20 +9,12 @@ import UIKit
 
 class DiaryTableViewController: UITableViewController {
     
-    
-    
 //данные кор дата
-    private var diaryList: [WorkoutNS] = []
-    
+    private let diaryList = Array(StorageManager.shared.fetchData().reversed())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setRightButtonItem()
-        
-        diaryList = StorageManager.shared.fetchData()
-        guard let exercisesNS = diaryList.last?.exercises?.allObjects as? [ExercisesNS] else { return }
-   
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -35,13 +27,12 @@ class DiaryTableViewController: UITableViewController {
     
 
     private func setRightButtonItem() {
-        let save = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveAction))
-        
+        let save = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(saveAction))
        navigationItem.setRightBarButtonItems([save], animated: true)
     }
     
     @objc private func saveAction() {
-       
+       // Изменение даты и удаление записи тренеровки
     }
     
     

@@ -9,7 +9,9 @@ import UIKit
 
 class StartViewController: UIViewController {
    
-    private let userDefaults = UserDefaults.standard
+    @IBOutlet weak var targetIsEmpty: UIView!
+    
+    private unowned let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +21,20 @@ class StartViewController: UIViewController {
             userDefaults.setValue(["Бицепс", "Спина"], forKey: "Second")
             userDefaults.setValue(["Ноги"], forKey: "Three")
         }
-        
-    
     }
-   
-    @IBAction func buttonDiary(_ sender: Any) {
-//        let alert = alert(with: "In next update", and: "Скоро релиз ф-ци дневника")
-//        present(alert, animated: true)
-        
+    
+    override func viewWillAppear(_ animated: Bool) {
+        targetIsEmpty.isHidden = getCompletedExercise().isEmpty ? true : false
+    }
+    
+    @IBAction func TapButtonDiary(_ sender: Any) {
+        if !getCompletedExercise().isEmpty {
+            let alert = alertForDiary(completionOne: { self.openDiaryTVC() },
+                                      completionTwo: { self.addExerciseToDiary()
+                self.openDiaryTVC()})
+            
+            present(alert, animated: true)
+        }
     }
     
     @IBAction func tapAboutUs(_ sender: Any) {
@@ -39,5 +47,35 @@ class StartViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barStyle = .black
         
+        let settings = UIBarButtonItem(image: UIImage(systemName: "gear"),
+                                       style: .done,
+                                       target: self,
+                                       action: #selector(openSettings))
+        
+        navigationItem.setRightBarButtonItems([settings], animated: true)
     }
+    
+    private func addExerciseToDiary() {
+        StorageManager.shared.addValuesForEntity(from: getCompletedExercise())
+        StorageManager.shared.saveContext()
+        userDefaults.setValue(nil, forKeyPath: "done")
+        targetIsEmpty.isHidden = true
+    }
+    
+    private func getCompletedExercise() -> [Exercise] {
+        guard let data = userDefaults.value(forKey: "done") as? Data else { return []}
+        guard let decoder = try? JSONDecoder().decode([Exercise].self, from: data) else { return []}
+        return decoder
+    }
+    
+    @objc private func openSettings() {
+        guard let settingsVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") else { return }
+        self.navigationController?.pushViewController(settingsVC, animated: true)
+    }
+    
+    private func openDiaryTVC() {
+        guard let diaryTVC = storyboard?.instantiateViewController(withIdentifier: "DiaryTVC") else { return }
+        self.navigationController?.pushViewController(diaryTVC, animated: true)
+    }
+     
 }

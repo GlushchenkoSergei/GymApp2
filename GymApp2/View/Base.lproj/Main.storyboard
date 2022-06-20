@@ -481,6 +481,7 @@
                     <navigationItem key="navigationItem" id="tG2-22-1VH"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="buttonDiary" destination="EWy-JH-U5P" id="cHf-QV-9jA"/>
                         <outlet property="targetIsEmpty" destination="gE8-1S-dBK" id="wuu-ag-vZd"/>
                     </connections>
                 </viewController>

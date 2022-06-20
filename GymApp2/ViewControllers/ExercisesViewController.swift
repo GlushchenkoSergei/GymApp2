@@ -69,18 +69,19 @@ class ExercisesViewController: UIViewController {
     }
     
     @objc private func addExerciseToDiary() {
-        StorageManager.shared.addValuesForEntity(from: exercisesForSaved, date: Date())
-        StorageManager.shared.saveContext()
-        
-        exercisesForSaved.removeAll()
-        updateUserData()
-        mainTableView.reloadData()
-        
-        let alert = UIAlertController(title: "Тренеровка сохранена", message: "", preferredStyle: .alert)
-        present(alert, animated: true)
-        dismiss(animated: true)
+        if !exercisesForSaved.isEmpty {
+            StorageManager.shared.addValuesForEntity(from: exercisesForSaved, date: Date())
+            StorageManager.shared.saveContext()
+            
+            exercisesForSaved.removeAll()
+            updateUserData()
+            mainTableView.reloadData()
+            
+            let alert = UIAlertController(title: "Тренеровка сохранена", message: "", preferredStyle: .alert)
+            present(alert, animated: true)
+            dismiss(animated: true)
+        }
     }
-    
   
     
     
@@ -174,6 +175,7 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
         content.secondaryText = exercise.numberOfRepetitions
         content.image = UIImage(named: exercise.image)
         content.imageProperties.maximumSize = CGSize(width: 70, height: 70)
+        content.imageProperties.cornerRadius = 5
         cell.contentConfiguration = content
         
         if exercisesForSaved.contains(exercise) {

@@ -22,13 +22,13 @@ class DiaryViewController: UIViewController {
         didSet {
             mainTableView.reloadData()
             oldAndNewSelectedIndex.append(createIndexPath(oldValue))
-            
             mainCollectionView.reloadItems(at: oldAndNewSelectedIndex)
         }
     }
 
     //данные кор дата
     private let diaryList = Array(StorageManager.shared.fetchData().reversed())
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,9 +81,13 @@ extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDeleg
 
 //MARK: - Set Table View
 extension DiaryViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let numberRows = diaryList[indexSelected].exercises?.count else { return 0}
-       return numberRows
+        if !diaryList.isEmpty {
+            guard let numberRows = diaryList[indexSelected].exercises?.count else { return 0}
+            return numberRows
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,7 +104,9 @@ extension DiaryViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = .black
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        mainTableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 //MARK: - Set size items

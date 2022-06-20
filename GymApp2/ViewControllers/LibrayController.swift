@@ -101,6 +101,7 @@ class LibraryController: UITableViewController {
         content.secondaryText = muscle[indexPath.row].numberOfRepetitions
         content.image = UIImage(named: muscle[indexPath.row].image)
         content.imageProperties.maximumSize = CGSize(width: 70, height: 70)
+        content.imageProperties.cornerRadius = 5
         cell.contentConfiguration = content
         return cell
     }

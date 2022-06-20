@@ -1,0 +1,15 @@
+//
+//  DateViewCell.swift
+//  GymApp2
+//
+//  Created by mac on 20.06.2022.
+//
+
+import UIKit
+
+class DateViewCell: UICollectionViewCell {
+    
+    @IBOutlet var labelDate: UILabel!
+    
+    
+}

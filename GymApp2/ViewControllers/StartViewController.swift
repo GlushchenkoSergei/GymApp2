@@ -29,9 +29,9 @@ class StartViewController: UIViewController {
     
     @IBAction func TapButtonDiary(_ sender: Any) {
         if !getCompletedExercise().isEmpty {
-            let alert = alertForDiary(completionOne: { self.openDiaryTVC() },
+            let alert = alertForDiary(completionOne: { self.openDiaryVC() },
                                       completionTwo: { self.addExerciseToDiary()
-                self.openDiaryTVC()})
+                self.openDiaryVC()})
             
             present(alert, animated: true)
         }
@@ -73,9 +73,9 @@ class StartViewController: UIViewController {
         self.navigationController?.pushViewController(settingsVC, animated: true)
     }
     
-    private func openDiaryTVC() {
-        guard let diaryTVC = storyboard?.instantiateViewController(withIdentifier: "DiaryTVC") else { return }
-        self.navigationController?.pushViewController(diaryTVC, animated: true)
+    private func openDiaryVC() {
+        guard let diaryVC = storyboard?.instantiateViewController(withIdentifier: "DiaryVC") else { return }
+        self.navigationController?.pushViewController(diaryVC, animated: true)
     }
      
 }

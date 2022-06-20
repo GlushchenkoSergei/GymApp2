@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		045E16E3285DF82300CEEB47 /* DiaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045E16E2285DF82300CEEB47 /* DiaryTableViewController.swift */; };
 		04838F8A285CDB5E00AE0ADC /* GymApp2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04838F88285CDB5E00AE0ADC /* GymApp2.xcdatamodeld */; };
 		04838F8C285CDF6700AE0ADC /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04838F8B285CDF6700AE0ADC /* StorageManager.swift */; };
 		04B931002817C32100F56B33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B930FF2817C32100F56B33 /* AppDelegate.swift */; };
@@ -25,12 +24,12 @@
 		04B9312A2817C71700F56B33 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B931212817C51300F56B33 /* Model.swift */; };
 		04B9312B2817C71C00F56B33 /* DataManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B931232817C51300F56B33 /* DataManage.swift */; };
 		04B9312C2817C72000F56B33 /* MuscleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B931182817C51300F56B33 /* MuscleSwitch.swift */; };
-		04D8BB8C285E485B00852C65 /* DiaryDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8BB8B285E485B00852C65 /* DiaryDetailTableViewController.swift */; };
+		04DFCBAB28607531009487D6 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DFCBAA28607531009487D6 /* DiaryViewController.swift */; };
+		04DFCBAD2860B413009487D6 /* DateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DFCBAC2860B413009487D6 /* DateViewCell.swift */; };
 		7485B7212818846200A37BA8 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485B7202818846200A37BA8 /* AlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		045E16E2285DF82300CEEB47 /* DiaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTableViewController.swift; sourceTree = "<group>"; };
 		04838F89285CDB5E00AE0ADC /* GymApp2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GymApp2.xcdatamodel; sourceTree = "<group>"; };
 		04838F8B285CDF6700AE0ADC /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		04B930FC2817C32100F56B33 /* GymApp2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymApp2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,7 +49,8 @@
 		04B9311F2817C51300F56B33 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		04B931212817C51300F56B33 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		04B931232817C51300F56B33 /* DataManage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManage.swift; sourceTree = "<group>"; };
-		04D8BB8B285E485B00852C65 /* DiaryDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailTableViewController.swift; sourceTree = "<group>"; };
+		04DFCBAA28607531009487D6 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
+		04DFCBAC2860B413009487D6 /* DateViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewCell.swift; sourceTree = "<group>"; };
 		7485B7202818846200A37BA8 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,8 +143,8 @@
 				04B9311F2817C51300F56B33 /* SettingsViewController.swift */,
 				04B9311B2817C51300F56B33 /* LibrayController.swift */,
 				04B9311A2817C51300F56B33 /* ChangeDetailController.swift */,
-				045E16E2285DF82300CEEB47 /* DiaryTableViewController.swift */,
-				04D8BB8B285E485B00852C65 /* DiaryDetailTableViewController.swift */,
+				04DFCBAA28607531009487D6 /* DiaryViewController.swift */,
+				04DFCBAC2860B413009487D6 /* DateViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -246,18 +246,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B9312A2817C71700F56B33 /* Model.swift in Sources */,
-				04D8BB8C285E485B00852C65 /* DiaryDetailTableViewController.swift in Sources */,
 				04838F8A285CDB5E00AE0ADC /* GymApp2.xcdatamodeld in Sources */,
 				04B931292817C70900F56B33 /* ExercisesViewController.swift in Sources */,
 				04838F8C285CDF6700AE0ADC /* StorageManager.swift in Sources */,
-				045E16E3285DF82300CEEB47 /* DiaryTableViewController.swift in Sources */,
 				04B9312B2817C71C00F56B33 /* DataManage.swift in Sources */,
 				7485B7212818846200A37BA8 /* AlertController.swift in Sources */,
 				04B9312C2817C72000F56B33 /* MuscleSwitch.swift in Sources */,
+				04DFCBAB28607531009487D6 /* DiaryViewController.swift in Sources */,
 				04B931252817C6FE00F56B33 /* LibrayController.swift in Sources */,
 				04B931242817C6FC00F56B33 /* ChangeDetailController.swift in Sources */,
 				04B931282817C70600F56B33 /* SettingsViewController.swift in Sources */,
 				04B931002817C32100F56B33 /* AppDelegate.swift in Sources */,
+				04DFCBAD2860B413009487D6 /* DateViewCell.swift in Sources */,
 				04B931262817C70100F56B33 /* DetailController.swift in Sources */,
 				04B931272817C70400F56B33 /* StartViewController.swift in Sources */,
 				04B931022817C32100F56B33 /* SceneDelegate.swift in Sources */,

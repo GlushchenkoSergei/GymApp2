@@ -41,9 +41,14 @@ class StorageManager {
         return array
     }
     
-    func addValuesForEntity(from exercisesForSaved: [Exercise], date: Date? = Date()) {
+    func addValuesForEntity(from exercisesForSaved: [Exercise], date: Date = Date()) {
         guard let workoutNS = StorageManager.shared.createTypeWorkoutNS() else { return }
-        workoutNS.date = date
+        
+        let calendar = Calendar.current
+        let componentsFromCurrentDate = calendar.dateComponents([.day, .month, .year], from: date)
+        guard let date2 = calendar.date(from: componentsFromCurrentDate) else { return }
+        
+        workoutNS.date = date2
         
         var arrayExercisesNS: [ExercisesNS] = []
         

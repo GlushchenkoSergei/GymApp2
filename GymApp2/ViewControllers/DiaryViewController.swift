@@ -12,16 +12,34 @@ class DiaryViewController: UIViewController {
     @IBOutlet var mainCollectionView: UICollectionView!
     @IBOutlet var mainTableView: UITableView!
     
-    var indexSelected = 0
+    var oldAndNewSelectedIndex: [IndexPath] = []
+    
+    var indexSelected = 0 {
+        willSet {
+            oldAndNewSelectedIndex.removeAll()
+            oldAndNewSelectedIndex.append(createIndexPath(newValue))
+               }
+        didSet {
+            mainTableView.reloadData()
+            oldAndNewSelectedIndex.append(createIndexPath(oldValue))
+            
+            mainCollectionView.reloadItems(at: oldAndNewSelectedIndex)
+        }
+    }
 
     //данные кор дата
     private let diaryList = Array(StorageManager.shared.fetchData().reversed())
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         mainTableView.rowHeight = 60
         title = "Дневник тренировок"
         setRightButtonItem()
+    }
+    
+    private func createIndexPath(_ value: Int) -> IndexPath {
+       IndexPath(row: value, section: 0)
     }
     
     private func setRightButtonItem() {
@@ -30,24 +48,21 @@ class DiaryViewController: UIViewController {
     }
     
     @objc private func editAction() {
-       // Изменение даты и удаление записи тренеровки
+       // Изменение даты и удаление записи тренировки
     }
-    
+
 }
 //MARK: - Set Collection View
-extension DiaryViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
-    
+extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         diaryList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateViewCell
-        cell.backgroundColor = #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 0.38)
         cell.labelDate.textColor = .black
+        cell.backgroundColor = indexPath.row == indexSelected ? #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1) : #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 0.38)
         cell.labelDate.text = diaryList[indexPath.row].date?.formatted(
             Date.FormatStyle()
                     .year(.defaultDigits)
@@ -56,6 +71,10 @@ extension DiaryViewController: UICollectionViewDataSource {
         )
         cell.layer.cornerRadius = cell.frame.height / 4
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        indexSelected = indexPath.row
     }
     
 }
@@ -84,8 +103,8 @@ extension DiaryViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
+//MARK: - Set size items
 extension DiaryViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150, height: 40)
     }

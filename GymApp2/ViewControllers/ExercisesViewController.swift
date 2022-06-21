@@ -77,7 +77,6 @@ class ExercisesViewController: UIViewController {
     }
     
     @objc private func addExerciseToDiary() {
-        
             StorageManager.shared.addValuesForEntity(from: exercisesForSaved, date: Date())
             StorageManager.shared.saveContext()
             
@@ -190,7 +189,6 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.layer.cornerRadius = cell.frame.height / 10
         } else {
             cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            
         }
         
         return cell

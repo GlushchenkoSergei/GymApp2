@@ -10,6 +10,11 @@ import UIKit
 class DateViewCell: UICollectionViewCell {
     
     @IBOutlet var labelDate: UILabel!
+    @IBOutlet var labelDelete: UILabel!
     
-    
+    var isEditing = false {
+        didSet {
+            labelDelete.isHidden = !isEditing
+        }
+    }
 }

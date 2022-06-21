@@ -623,14 +623,28 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="❌" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HiW-IY-O5Y">
+                                                    <rect key="frame" x="15" y="41" width="98" height="46"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="98" id="pwa-v0-Tpy"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="9gc-h4-SQM" firstAttribute="centerY" secondItem="scL-0A-Hrn" secondAttribute="centerY" id="CeD-hk-6Du"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HiW-IY-O5Y" secondAttribute="trailing" constant="20" symbolic="YES" id="KVb-OL-3U3"/>
                                                 <constraint firstItem="9gc-h4-SQM" firstAttribute="centerX" secondItem="scL-0A-Hrn" secondAttribute="centerX" id="dWu-jO-sSI"/>
+                                                <constraint firstItem="HiW-IY-O5Y" firstAttribute="leading" secondItem="scL-0A-Hrn" secondAttribute="leading" constant="15" id="ezc-en-nI3"/>
+                                                <constraint firstItem="HiW-IY-O5Y" firstAttribute="centerY" secondItem="scL-0A-Hrn" secondAttribute="centerY" id="yeG-fi-0fg"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <connections>
                                             <outlet property="labelDate" destination="9gc-h4-SQM" id="zRt-4g-sEE"/>
+                                            <outlet property="labelDelete" destination="HiW-IY-O5Y" id="kpv-ex-uHx"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -660,7 +674,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6c-xj-SnK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="419" y="210"/>
+            <point key="canvasLocation" x="418.84057971014494" y="209.59821428571428"/>
         </scene>
         <!--Тренеровка-->
         <scene sceneID="e6d-Sn-16j">
@@ -905,6 +919,9 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -12,7 +12,7 @@ class DiaryViewController: UIViewController {
     @IBOutlet var mainCollectionView: UICollectionView!
     @IBOutlet var mainTableView: UITableView!
     
-    private var editingStyle = false
+    private var editingStyleCustom = false
     
     var oldAndNewSelectedIndex: [IndexPath] = []
     
@@ -28,17 +28,13 @@ class DiaryViewController: UIViewController {
         }
     }
 
-    //данные кор дата
-    private let diaryList = Array(StorageManager.shared.fetchData().reversed())
-    
+    private var diaryList = Array(StorageManager.shared.fetchData().reversed())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        mainTableView.rowHeight = 60
         title = "Дневник тренировок"
+        mainTableView.rowHeight = 60
         setRightButtonItem()
-        
     }
     
     private func createIndexPath(_ value: Int) -> IndexPath {
@@ -46,7 +42,7 @@ class DiaryViewController: UIViewController {
     }
     
     private func setRightButtonItem() {
-        let edit = UIBarButtonItem(title: editingStyle ? "Done" : "Edit",
+        let edit = UIBarButtonItem(title: editingStyleCustom ? "Done" : "Edit",
                                     style: .done,
                                     target: self,
                                     action: #selector(editAction))
@@ -54,11 +50,20 @@ class DiaryViewController: UIViewController {
     }
     
     @objc private func editAction() {
-        mainTableView.isEditing = editingStyle ? false : true
-        mainCollectionView.isEditing = editingStyle ? false : true
-        editingStyle.toggle()
+        mainTableView.isEditing = editingStyleCustom ? false : true
+        mainCollectionView.isEditing = editingStyleCustom ? false : true
+        editingStyleCustom.toggle()
         
         setRightButtonItem()
+        setEditingStyleForCollection()
+    }
+    
+    private func setEditingStyleForCollection() {
+        
+        for item in 0..<diaryList.count {
+        let indexPath = IndexPath(row: item, section: 0)
+        mainCollectionView.reloadItems(at: [indexPath])
+    }
     }
 
 }
@@ -80,22 +85,21 @@ extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDeleg
                     .day(.twoDigits)
         )
         cell.layer.cornerRadius = cell.frame.height / 4
+//        cell.isEditing = editingStyleCustom
+        cell.labelDelete.isHidden = !editingStyleCustom
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if editingStyle {
-            print("fffff")
+        if editingStyleCustom {
+            StorageManager.shared.delete(workoutNS: diaryList[indexPath.row])
+            StorageManager.shared.saveContext()
+            diaryList.remove(at: indexPath.row)
+            mainCollectionView.reloadItems(at: [indexPath])
+            mainTableView.reloadData()
         } else {
             indexSelected = indexPath.row
         }
-    }
-    func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
-        true
-    }
-
-    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
     }
     
     
@@ -130,19 +134,17 @@ extension DiaryViewController: UITableViewDataSource, UITableViewDelegate {
         mainTableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
-    
-    //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    //        true
-    //    }
-    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("удалил")
+            guard let exercisesNS = diaryList[indexSelected].exercises?.allObjects as? [ExercisesNS] else { return }
+            StorageManager.shared.delete(exercisesNS: exercisesNS[indexPath.row])
+            StorageManager.shared.saveContext()
+            diaryList = Array(StorageManager.shared.fetchData().reversed())
+            mainTableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     

@@ -41,6 +41,14 @@ class StorageManager {
         return array
     }
     
+    func delete(workoutNS: WorkoutNS) {
+        context.delete(workoutNS)
+    }
+    
+    func delete(exercisesNS: ExercisesNS) {
+        context.delete(exercisesNS)
+    }
+    
     func addValuesForEntity(from exercisesForSaved: [Exercise], date: Date = Date()) {
         guard let workoutNS = StorageManager.shared.createTypeWorkoutNS() else { return }
         

@@ -12,6 +12,8 @@ class DiaryViewController: UIViewController {
     @IBOutlet var mainCollectionView: UICollectionView!
     @IBOutlet var mainTableView: UITableView!
     
+    private var editingStyle = false
+    
     var oldAndNewSelectedIndex: [IndexPath] = []
     
     var indexSelected = 0 {
@@ -36,6 +38,7 @@ class DiaryViewController: UIViewController {
         mainTableView.rowHeight = 60
         title = "Дневник тренировок"
         setRightButtonItem()
+        
     }
     
     private func createIndexPath(_ value: Int) -> IndexPath {
@@ -43,12 +46,19 @@ class DiaryViewController: UIViewController {
     }
     
     private func setRightButtonItem() {
-        let edit = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editAction))
-       navigationItem.setRightBarButtonItems([edit], animated: true)
+        let edit = UIBarButtonItem(title: editingStyle ? "Done" : "Edit",
+                                    style: .done,
+                                    target: self,
+                                    action: #selector(editAction))
+        navigationItem.setRightBarButtonItems([edit], animated: true)
     }
     
     @objc private func editAction() {
-       // Изменение даты и удаление записи тренировки
+        mainTableView.isEditing = editingStyle ? false : true
+        mainCollectionView.isEditing = editingStyle ? false : true
+        editingStyle.toggle()
+        
+        setRightButtonItem()
     }
 
 }
@@ -74,8 +84,20 @@ extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        indexSelected = indexPath.row
+        if editingStyle {
+            print("fffff")
+        } else {
+            indexSelected = indexPath.row
+        }
     }
+    func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
+        true
+    }
+
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+    }
+    
     
 }
 
@@ -107,6 +129,23 @@ extension DiaryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         mainTableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    
+    
+    //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    //        true
+    //    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("удалил")
+        }
+    }
+    
 }
 
 //MARK: - Set size items

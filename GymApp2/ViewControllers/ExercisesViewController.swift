@@ -18,8 +18,8 @@ class ExercisesViewController: UIViewController {
     @IBOutlet weak var exerciseGroupsSegmentedControl: UISegmentedControl!
     
     private let userDefaults = UserDefaults.standard
-    
     private let exercises = DataManage.shared.exercises
+    
     private var selectedExercises = [Exercise]()
     private var exercisesForSaved = [Exercise]()
     
@@ -36,7 +36,9 @@ class ExercisesViewController: UIViewController {
             [.foregroundColor: UIColor.white], for: .normal
         )
         setRightButtonItem()
+        setBarButtonIsEnabled()
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let detailVC = segue.destination as? DetailController else { return }
@@ -49,6 +51,12 @@ class ExercisesViewController: UIViewController {
     @IBAction func segmentControl(_ sender: UISegmentedControl) {
         selectExercise()
         mainTableView.reloadData()
+    }
+    
+    private func setBarButtonIsEnabled() {
+        navigationItem.rightBarButtonItems?.first?.isEnabled = exercisesForSaved.isEmpty
+        ? false
+        : true
     }
     
     private func setRightButtonItem() {
@@ -69,7 +77,7 @@ class ExercisesViewController: UIViewController {
     }
     
     @objc private func addExerciseToDiary() {
-        if !exercisesForSaved.isEmpty {
+        
             StorageManager.shared.addValuesForEntity(from: exercisesForSaved, date: Date())
             StorageManager.shared.saveContext()
             
@@ -80,7 +88,6 @@ class ExercisesViewController: UIViewController {
             let alert = UIAlertController(title: "Тренеровка сохранена", message: "", preferredStyle: .alert)
             present(alert, animated: true)
             dismiss(animated: true)
-        }
     }
   
     
@@ -213,8 +220,8 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
             self.updateUserData()
             tableView.reloadRows(at: [indexPath], with: .automatic)
                completion(true)
+            self.setBarButtonIsEnabled()
         }
-        
         actionDone.image = UIImage(systemName: imageName)
         actionDone.backgroundColor = color
         

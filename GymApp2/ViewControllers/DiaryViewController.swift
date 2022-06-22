@@ -14,20 +14,23 @@ class DiaryViewController: UIViewController {
     
     private var editingStyleCustom = false
     
-    var oldAndNewSelectedIndex: [IndexPath] = []
+    private var oldAndNewSelectedIndex: [IndexPath] = []
     
-    var indexSelected = 0 {
+    private var indexSelected = 0 {
         willSet {
             oldAndNewSelectedIndex.removeAll()
             oldAndNewSelectedIndex.append(createIndexPath(newValue))
-               }
+        }
         didSet {
             mainTableView.reloadData()
             oldAndNewSelectedIndex.append(createIndexPath(oldValue))
-            mainCollectionView.reloadItems(at: oldAndNewSelectedIndex)
+            
+            if !editingStyleCustom {
+                mainCollectionView.reloadItems(at: oldAndNewSelectedIndex)
+            }
         }
     }
-
+    
     private var diaryList = Array(StorageManager.shared.fetchData().reversed())
     
     override func viewDidLoad() {
@@ -38,14 +41,14 @@ class DiaryViewController: UIViewController {
     }
     
     private func createIndexPath(_ value: Int) -> IndexPath {
-       IndexPath(row: value, section: 0)
+        IndexPath(row: value, section: 0)
     }
     
     private func setRightButtonItem() {
         let edit = UIBarButtonItem(title: editingStyleCustom ? "Done" : "Edit",
-                                    style: .done,
-                                    target: self,
-                                    action: #selector(editAction))
+                                   style: .done,
+                                   target: self,
+                                   action: #selector(editAction))
         navigationItem.setRightBarButtonItems([edit], animated: true)
     }
     
@@ -55,53 +58,73 @@ class DiaryViewController: UIViewController {
         editingStyleCustom.toggle()
         
         setRightButtonItem()
-        setEditingStyleForCollection()
+        mainCollectionView.reloadItems(at: [createIndexPath(indexSelected)])
     }
     
-    private func setEditingStyleForCollection() {
-        
-        for item in 0..<diaryList.count {
-        let indexPath = IndexPath(row: item, section: 0)
-        mainCollectionView.reloadItems(at: [indexPath])
-    }
-    }
-
 }
 //MARK: - Set Collection View
 extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         diaryList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateViewCell
         cell.labelDate.textColor = .black
         cell.backgroundColor = indexPath.row == indexSelected ? #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1) : #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 0.38)
         cell.labelDate.text = diaryList[indexPath.row].date?.formatted(
             Date.FormatStyle()
-                    .year(.defaultDigits)
-                    .month(.abbreviated)
-                    .day(.twoDigits)
+                .hour()
+                .month(.abbreviated)
+                .day(.twoDigits)
         )
+        
         cell.layer.cornerRadius = cell.frame.height / 4
-//        cell.isEditing = editingStyleCustom
-        cell.labelDelete.isHidden = !editingStyleCustom
+        cell.labelDelete.isHidden = true
+        
+        if indexSelected == indexPath.row {
+            cell.labelDelete.isHidden = !editingStyleCustom
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if editingStyleCustom {
-            StorageManager.shared.delete(workoutNS: diaryList[indexPath.row])
-            StorageManager.shared.saveContext()
-            diaryList.remove(at: indexPath.row)
-            mainCollectionView.reloadItems(at: [indexPath])
-            mainTableView.reloadData()
-        } else {
+        
+        if editingStyleCustom, indexPath.row == indexSelected {
+            guard let date = diaryList[indexPath.row].date?.formatted(
+                Date.FormatStyle()
+                    .hour()
+                    .month(.abbreviated)
+                    .day(.twoDigits)
+            ) else { return }
+            
+            let alert = alertWithCompletions(
+                preferredStyle: .actionSheet,
+                title: "Удалить тренеровку \(String(date))",
+                actionOneTitle: "Отмена",
+                actionTwoTitle: "да",
+                completionOne: {},
+                completionTwo: { self.deleteDateFromCoreData(indexPath) }
+            )
+            
+            present(alert, animated: true)
+            
+        }
+        if !editingStyleCustom {
             indexSelected = indexPath.row
         }
+        
     }
     
+    private func deleteDateFromCoreData(_ indexPath: IndexPath) {
+        StorageManager.shared.delete(workoutNS: diaryList[indexPath.row])
+        StorageManager.shared.saveContext()
+        diaryList.remove(at: indexPath.row)
+        mainCollectionView.reloadItems(at: [indexPath])
+        mainTableView.reloadData()
+    }
     
 }
 
@@ -130,13 +153,6 @@ extension DiaryViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = .black
         return cell
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        mainTableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -146,6 +162,10 @@ extension DiaryViewController: UITableViewDataSource, UITableViewDelegate {
             diaryList = Array(StorageManager.shared.fetchData().reversed())
             mainTableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        mainTableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

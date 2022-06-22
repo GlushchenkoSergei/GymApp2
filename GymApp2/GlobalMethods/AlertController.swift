@@ -16,7 +16,7 @@ func alert(with title: String, and message: String) -> UIAlertController {
 
 
 func alertForDiary(completionOne: @escaping () -> Void, completionTwo: @escaping () -> Void) -> UIAlertController {
-    let alert = UIAlertController(title: "Имеется не завершенная тренировка", message: "", preferredStyle: .alert)
+    let alert = UIAlertController(title: "Имеется не завершенная тренировка", message: "", preferredStyle: .actionSheet)
     let alertAction2 = UIAlertAction(title: "Завершить и сохранить ", style: .cancel) { _ in
         completionTwo()
     }
@@ -27,4 +27,18 @@ func alertForDiary(completionOne: @escaping () -> Void, completionTwo: @escaping
     alert.addAction(alertAction2)
     return alert
 }
+
+func alertWithCompletions(preferredStyle: UIAlertController.Style, title: String, actionOneTitle: String, actionTwoTitle: String, completionOne: @escaping () -> Void, completionTwo: @escaping () -> Void) -> UIAlertController {
+    let alert = UIAlertController(title: title, message: "", preferredStyle: preferredStyle)
+    let alertAction = UIAlertAction(title: actionOneTitle, style: .cancel) { _ in
+        completionOne()
+    }
+    let alertAction2 = UIAlertAction(title: actionTwoTitle, style: .destructive) { _ in
+        completionTwo()
+    }
+    alert.addAction(alertAction)
+    alert.addAction(alertAction2)
+    return alert
+}
+
 

@@ -69,7 +69,7 @@ class ExercisesViewController: UIViewController {
                                     target: self,
                                     action: #selector(openTimer))
         
-       navigationItem.setRightBarButtonItems([save, timer], animated: true)
+        navigationItem.setRightBarButtonItems([save, timer], animated: true)
     }
     
     @objc private func openTimer() {
@@ -77,18 +77,19 @@ class ExercisesViewController: UIViewController {
     }
     
     @objc private func addExerciseToDiary() {
-            StorageManager.shared.addValuesForEntity(from: exercisesForSaved, date: Date())
-            StorageManager.shared.saveContext()
-            
-            exercisesForSaved.removeAll()
-            updateUserData()
-            mainTableView.reloadData()
-            
-            let alert = UIAlertController(title: "Тренеровка сохранена", message: "", preferredStyle: .alert)
-            present(alert, animated: true)
-            dismiss(animated: true)
+        StorageManager.shared.addValuesForEntity(from: exercisesForSaved, date: Date())
+        StorageManager.shared.saveContext()
+        
+        exercisesForSaved.removeAll()
+        updateUserData()
+        mainTableView.reloadData()
+        setBarButtonIsEnabled()
+        
+        let alert = UIAlertController(title: "Тренеровка сохранена", message: "", preferredStyle: .alert)
+        present(alert, animated: true)
+        dismiss(animated: true)
     }
-  
+    
     
     
     private func setValueControl() {
@@ -111,7 +112,7 @@ class ExercisesViewController: UIViewController {
     }
     
     private func addSegment(_ name: String) {
-       let number = exerciseGroupsSegmentedControl.numberOfSegments
+        let number = exerciseGroupsSegmentedControl.numberOfSegments
         exerciseGroupsSegmentedControl.insertSegment(withTitle: name, at: number, animated: false)
     }
     
@@ -147,10 +148,10 @@ class ExercisesViewController: UIViewController {
         guard let decoder = try? JSONDecoder().decode([Exercise].self, from: data) else { return }
         exercisesForSaved = decoder
     }
-
-       private func updateUserData() {
-           guard let encodeData = try? JSONEncoder().encode(exercisesForSaved) else { return }
-           userDefaults.setValue(encodeData, forKeyPath: "done")
+    
+    private func updateUserData() {
+        guard let encodeData = try? JSONEncoder().encode(exercisesForSaved) else { return }
+        userDefaults.setValue(encodeData, forKeyPath: "done")
     }
     
 }
@@ -217,7 +218,7 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
             }
             self.updateUserData()
             tableView.reloadRows(at: [indexPath], with: .automatic)
-               completion(true)
+            completion(true)
             self.setBarButtonIsEnabled()
         }
         actionDone.image = UIImage(systemName: imageName)

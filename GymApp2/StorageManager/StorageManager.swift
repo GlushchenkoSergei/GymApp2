@@ -49,7 +49,7 @@ class StorageManager {
         context.delete(exercisesNS)
     }
     
-    func addValuesForEntity(from exercisesForSaved: [Exercise], date: Date = Date()) {
+    func addValuesForEntity(from exercisesForSaved: [Exercise], date: Date ) {
         guard let workoutNS = StorageManager.shared.createTypeWorkoutNS() else { return }
         
         let calendar = Calendar.current

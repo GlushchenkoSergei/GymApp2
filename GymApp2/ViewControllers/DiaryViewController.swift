@@ -75,9 +75,9 @@ extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDeleg
         cell.backgroundColor = indexPath.row == indexSelected ? #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1) : #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 0.38)
         cell.labelDate.text = diaryList[indexPath.row].date?.formatted(
             Date.FormatStyle()
-                .hour()
-                .month(.abbreviated)
-                .day(.twoDigits)
+                .day()
+                .month()
+                .year()
         )
         
         cell.layer.cornerRadius = cell.frame.height / 4
@@ -122,6 +122,7 @@ extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDeleg
         StorageManager.shared.delete(workoutNS: diaryList[indexPath.row])
         StorageManager.shared.saveContext()
         diaryList.remove(at: indexPath.row)
+        
         mainCollectionView.reloadItems(at: [indexPath])
         mainTableView.reloadData()
     }
@@ -132,9 +133,16 @@ extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDeleg
 extension DiaryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !diaryList.isEmpty {
-            guard let numberRows = diaryList[indexSelected].exercises?.count else { return 0}
+        
+        // Защита от краша при пустом дневнике
+        if indexSelected < diaryList.count {
+            guard let numberRows = diaryList[indexSelected].exercises?.count else { return 0 }
             return numberRows
+        }
+        
+        // Защита от краша при удалении крайней даты из дневника
+        if diaryList.count != 0 {
+        indexSelected = diaryList.count - 1
         }
         return 0
     }

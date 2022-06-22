@@ -58,7 +58,8 @@ class StartViewController: UIViewController {
     }
     
     private func addExerciseToDiary() {
-        StorageManager.shared.addValuesForEntity(from: getCompletedExercise())
+        let date = Date()
+        StorageManager.shared.addValuesForEntity(from: getCompletedExercise(), date: date)
         StorageManager.shared.saveContext()
         userDefaults.setValue(nil, forKeyPath: "done")
         targetIsEmpty.isHidden = true

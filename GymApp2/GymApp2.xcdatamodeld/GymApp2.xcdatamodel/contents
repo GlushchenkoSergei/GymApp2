@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ExercisesNS" representedClassName="ExercisesNS" syncable="YES" codeGenerationType="class">
+        <attribute name="descr" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="numberOfRepetitions" optional="YES" attributeType="String"/>
+        <relationship name="workoutNS" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutNS" inverseName="exercises" inverseEntity="WorkoutNS"/>
+    </entity>
+    <entity name="WorkoutNS" representedClassName="WorkoutNS" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExercisesNS" inverseName="workoutNS" inverseEntity="ExercisesNS"/>
+    </entity>
+    <elements>
+        <element name="ExercisesNS" positionX="-96.8292236328125" positionY="139.9880981445312" width="128" height="103"/>
+        <element name="WorkoutNS" positionX="-424.19775390625" positionY="-56.93072509765625" width="128" height="59"/>
+    </elements>
+</model>

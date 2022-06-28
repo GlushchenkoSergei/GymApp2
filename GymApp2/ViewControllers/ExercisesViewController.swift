@@ -6,49 +6,91 @@
 //
 
 import UIKit
+import CoreData
 
 protocol ExercisesControllerProtocol {
-    func saveExercise(exercise: Exercise)
+    func saveExercise(exercises: [Exercise])
 }
 
-class ExercisesViewController: UIViewController{
+class ExercisesViewController: UIViewController {
     
     @IBOutlet var mainTableView: UITableView!
     @IBOutlet weak var exerciseGroupsSegmentedControl: UISegmentedControl!
     
     private let userDefaults = UserDefaults.standard
-    
     private let exercises = DataManage.shared.exercises
+    
     private var selectedExercises = [Exercise]()
     private var exercisesForSaved = [Exercise]()
+    
+    let itemTimer = UINavigationItem(title: "Таймер")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setValueControl()
         selectExercise()
         mainTableView.rowHeight = 80
+        mainTableView.separatorColor = .black
         
+        exerciseGroupsSegmentedControl.setTitleTextAttributes(
+            [.foregroundColor: UIColor.white], for: .normal
+        )
+        setRightButtonItem()
+        setBarButtonIsEnabled()
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let detailVC = segue.destination as? DetailController else { return }
         guard let indexPath = mainTableView.indexPathForSelectedRow else { return }
         detailVC.exercise = selectedExercises[indexPath.row]
+        detailVC.exercisesForSaved = exercisesForSaved
         detailVC.delegate = self
     }
-    
-    
     
     @IBAction func segmentControl(_ sender: UISegmentedControl) {
         selectExercise()
         mainTableView.reloadData()
     }
     
-    
-    func addExerciseToJournal() {
-        // здесь нужно реализовать метод сохранения в журнал
-        // exercisesForSaved
+    private func setBarButtonIsEnabled() {
+        navigationItem.rightBarButtonItems?.first?.isEnabled = exercisesForSaved.isEmpty
+        ? false
+        : true
     }
+    
+    private func setRightButtonItem() {
+        let save = UIBarButtonItem(barButtonSystemItem: .save,
+                                   target: self,
+                                   action: #selector(addExerciseToDiary))
+        
+        let timer = UIBarButtonItem(image: UIImage(systemName: "clock.arrow.circlepath"),
+                                    style: .done,
+                                    target: self,
+                                    action: #selector(openTimer))
+        
+        navigationItem.setRightBarButtonItems([save, timer], animated: true)
+    }
+    
+    @objc private func openTimer() {
+        // открыть контроллер таймер
+    }
+    
+    @objc private func addExerciseToDiary() {
+        StorageManager.shared.addValuesForEntity(from: exercisesForSaved, date: Date())
+        StorageManager.shared.saveContext()
+        
+        exercisesForSaved.removeAll()
+        updateUserData()
+        mainTableView.reloadData()
+        setBarButtonIsEnabled()
+        
+        let alert = UIAlertController(title: "Тренеровка сохранена", message: "", preferredStyle: .alert)
+        present(alert, animated: true)
+        dismiss(animated: true)
+    }
+    
+    
     
     private func setValueControl() {
         guard userDefaults.array(forKey: "numberSegment") != nil else { return }
@@ -70,10 +112,9 @@ class ExercisesViewController: UIViewController{
     }
     
     private func addSegment(_ name: String) {
-       let number = exerciseGroupsSegmentedControl.numberOfSegments
+        let number = exerciseGroupsSegmentedControl.numberOfSegments
         exerciseGroupsSegmentedControl.insertSegment(withTitle: name, at: number, animated: false)
     }
-    
     
     private func selectExercise() {
         let selectedSegmentIndex = exerciseGroupsSegmentedControl.selectedSegmentIndex
@@ -87,6 +128,7 @@ class ExercisesViewController: UIViewController{
         }
         
         changeExercise(muscles: muscleGroup)
+        updateCompletedExercise()
     }
     
     private func changeExercise(muscles: [MuscleGroup])  {
@@ -100,13 +142,25 @@ class ExercisesViewController: UIViewController{
             }
         }
     }
+    
+    private func updateCompletedExercise() {
+        guard let data = userDefaults.value(forKey: "done") as? Data else { return }
+        guard let decoder = try? JSONDecoder().decode([Exercise].self, from: data) else { return }
+        exercisesForSaved = decoder
+    }
+    
+    private func updateUserData() {
+        guard let encodeData = try? JSONEncoder().encode(exercisesForSaved) else { return }
+        userDefaults.setValue(encodeData, forKeyPath: "done")
+    }
+    
 }
 
 // MARK: - Настройка делегирования
 extension ExercisesViewController: ExercisesControllerProtocol {
-    
-    func saveExercise(exercise: Exercise) {
-        exercisesForSaved.append(exercise)
+    func saveExercise(exercises: [Exercise]) {
+        exercisesForSaved = exercises
+        mainTableView.reloadData()
     }
 }
 
@@ -120,22 +174,57 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "showExercises", for: indexPath)
         
-        let exercises = selectedExercises[indexPath.row]
-        
+        let exercise = selectedExercises[indexPath.row]
         var content = cell.defaultContentConfiguration()
-        content.textProperties.color = UIColor(red: 0/255, green: 169/255, blue: 209/255, alpha: 1)
-        content.secondaryTextProperties.color = .gray
-        content.text = exercises.description
-        content.secondaryText = exercises.numberOfRepetitions
-        content.image = UIImage(named: exercises.image)
+        content.textProperties.color = #colorLiteral(red: 0, green: 0.798466444, blue: 0.9789896607, alpha: 0.7078630743)
+        content.secondaryTextProperties.color = .white
+        content.text = exercise.description
+        content.secondaryText = exercise.numberOfRepetitions
+        content.image = UIImage(named: exercise.image)
         content.imageProperties.maximumSize = CGSize(width: 70, height: 70)
+        content.imageProperties.cornerRadius = 5
         cell.contentConfiguration = content
+        
+        if exercisesForSaved.contains(exercise) {
+            cell.backgroundColor = #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 0.38)
+            cell.layer.cornerRadius = cell.frame.height / 10
+        } else {
+            cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    //MARK: - swipe action
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let index = exercisesForSaved.contains(selectedExercises[indexPath.row])
+        let exercise = selectedExercises[indexPath.row]
+        
+        let color = index ? #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1) : #colorLiteral(red: 0, green: 0.798466444, blue: 0.9789896607, alpha: 0.4459887048)
+        let imageName = index ? "multiply.circle.fill": "checkmark.circle.fill"
+        
+        let actionDone = UIContextualAction(style: .normal, title: "done") { _, _, completion in
+            
+            if !self.exercisesForSaved.contains(exercise) {
+                self.exercisesForSaved.append(exercise)
+            } else {
+                guard let index = self.exercisesForSaved.firstIndex(of: exercise) else { return }
+                self.exercisesForSaved.remove(at: index)
+            }
+            self.updateUserData()
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            completion(true)
+            self.setBarButtonIsEnabled()
+        }
+        actionDone.image = UIImage(systemName: imageName)
+        actionDone.backgroundColor = color
+        
+        return UISwipeActionsConfiguration(actions: [actionDone])
     }
     
 }

@@ -73,7 +73,7 @@ class ExercisesViewController: UIViewController {
     }
     
     @objc private func openTimer() {
-        // открыть контроллер таймер
+        present(TimerViewController(), animated: true)
     }
     
     @objc private func addExerciseToDiary() {

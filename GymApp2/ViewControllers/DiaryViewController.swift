@@ -35,7 +35,7 @@ class DiaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Дневник тренировок"
+        title = "Дневник"
         mainTableView.rowHeight = 60
         setRightButtonItem()
     }

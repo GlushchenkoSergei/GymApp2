@@ -27,8 +27,6 @@ class DetailController: UIViewController {
         doneButton.backgroundColor = setColorButton()
     }
     
-    
-    
     @IBAction func tapDoneButton(_ sender: UIButton) {
         checkSavedExercises()
         doneButton.backgroundColor = setColorButton()
@@ -59,7 +57,4 @@ class DetailController: UIViewController {
         userDefaults.setValue(encodeData, forKeyPath: "done")
     }
     
-    
-    
 }
-

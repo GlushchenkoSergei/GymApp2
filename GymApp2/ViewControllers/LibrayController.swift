@@ -65,7 +65,6 @@ class LibraryController: UITableViewController {
         changeVC.exercise = selectedSection[indexPath.row]
     }
     
-    
     // MARK: - Table view data source
     private func getExercises(muscle: MuscleGroup) -> [Exercise] {
         var selectedExercises = [Exercise]()
@@ -76,7 +75,6 @@ class LibraryController: UITableViewController {
             }
         return selectedExercises
     }
-    
     
     private func selectedSection(_ at: IndexPath) -> [Exercise] {
         switch at.section {

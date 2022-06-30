@@ -23,7 +23,7 @@ class ExercisesViewController: UIViewController {
     private var selectedExercises = [Exercise]()
     private var exercisesForSaved = [Exercise]()
     
-    let itemTimer = UINavigationItem(title: "Таймер")
+//    private let itemTimer = UINavigationItem(title: "Таймер")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,6 +161,7 @@ extension ExercisesViewController: ExercisesControllerProtocol {
     func saveExercise(exercises: [Exercise]) {
         exercisesForSaved = exercises
         mainTableView.reloadData()
+        setBarButtonIsEnabled()
     }
 }
 
@@ -199,7 +200,7 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    //MARK: - swipe action
+    //MARK: - Настройка свайпа табличного представления
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let index = exercisesForSaved.contains(selectedExercises[indexPath.row])

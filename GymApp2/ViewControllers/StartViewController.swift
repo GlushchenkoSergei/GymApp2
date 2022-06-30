@@ -12,7 +12,7 @@ class StartViewController: UIViewController {
     @IBOutlet weak var targetIsEmpty: UIView!
     @IBOutlet var buttonDiary: UIButton!
     
-    private unowned let userDefaults = UserDefaults.standard
+    private let userDefaults = UserDefaults.standard
     let diaryList = Array(StorageManager.shared.fetchData().reversed())
     
     override func viewDidLoad() {

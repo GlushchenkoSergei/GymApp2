@@ -52,7 +52,6 @@ class TimerViewController: UIViewController {
     private var timer = Timer()
     private var durationTimer = 0
     
-    
     private let shapeLayer = CAShapeLayer()
     
     private var valuesForPicker: [Int] = {
@@ -162,7 +161,6 @@ class TimerViewController: UIViewController {
     }
     
 }
-
 
 // MARK: - Picker Data Sorse, and Picker Delegate
 extension TimerViewController: UIPickerViewDataSource, UIPickerViewDelegate {

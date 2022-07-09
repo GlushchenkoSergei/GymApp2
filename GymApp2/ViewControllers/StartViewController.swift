@@ -31,9 +31,9 @@ class StartViewController: UIViewController {
     
     @IBAction func TapButtonDiary(_ sender: Any) {
         if !getCompletedExercise().isEmpty {
-            let alert = alertForDiary(completionOne: { self.openDiaryVC() },
-                                      completionTwo: { self.addExerciseToDiary()
-                self.openDiaryVC()})
+            let alert = alertForDiary(completionOne: { [weak self] in self?.openDiaryVC() },
+                                      completionTwo: { [weak self] in self?.addExerciseToDiary()
+                self?.openDiaryVC()})
             
             present(alert, animated: true)
         }

@@ -840,7 +840,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="2cI-b3-I5f" kind="presentation" id="F5e-aS-HzZ"/>
+                                            <action selector="buttonTimerTapped:" destination="dkH-3P-CPz" eventType="touchUpInside" id="Jd9-yK-89K"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZh-ij-KuH">
@@ -904,7 +904,7 @@
             <objects>
                 <viewController storyboardIdentifier="TimerViewController" id="2cI-b3-I5f" customClass="TimerViewController" customModule="GymApp2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v0L-W0-Z0X">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="UNh-xh-eQL"/>
                     </view>

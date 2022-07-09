@@ -17,7 +17,7 @@ class DetailController: UIViewController {
     
     var exercise: Exercise!
     var exercisesForSaved: [Exercise]!
-    var delegate: ExercisesControllerProtocol!
+    weak var delegate: ExercisesControllerProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +27,14 @@ class DetailController: UIViewController {
         doneButton.backgroundColor = setColorButton()
     }
     
+    @IBAction func buttonTimerTapped(_ sender: Any) {
+        present(TimerViewController(), animated: true)
+    }
+    
     @IBAction func tapDoneButton(_ sender: UIButton) {
         checkSavedExercises()
         doneButton.backgroundColor = setColorButton()
-        delegate.saveExercise(exercises: exercisesForSaved)
+        delegate?.saveExercise(exercises: exercisesForSaved)
         updateUserData()
         self.dismiss(animated: true)
     }

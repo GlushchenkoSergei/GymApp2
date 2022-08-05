@@ -31,17 +31,25 @@ class StartViewController: UIViewController {
     
     @IBAction func TapButtonDiary(_ sender: Any) {
         if !getCompletedExercise().isEmpty {
-            let alert = alertForDiary(completionOne: { [weak self] in self?.openDiaryVC() },
-                                      completionTwo: { [weak self] in self?.addExerciseToDiary()
-                self?.openDiaryVC()})
-            
+
+            let alert = Alert.alertWithCompletions(
+                style: .actionSheet,
+                title: "Имеется не завершенная тренировка",
+                actionTitleOne: "Не сохранять",
+                actionTitleTwo: "Завершить и сохранить",
+                completionOne: { [weak self] in self?.openDiaryVC() },
+                completionTwo: { [weak self] in
+                    self?.addExerciseToDiary()
+                    self?.openDiaryVC() }
+            )
+
             present(alert, animated: true)
         }
     }
     
     @IBAction func tapAboutUs(_ sender: Any) {
         let names = "Сергей Глущенко: t.me gl_sergeyy \n Василий Полторак: t.me ednzlo"
-        let alert = alert(with: "Приложение разработали", and: names)
+        let alert = Alert.alert(with: "Приложение разработали", and: names)
         present(alert, animated: true)
     }
     

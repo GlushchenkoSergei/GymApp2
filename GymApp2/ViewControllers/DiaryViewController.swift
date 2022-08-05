@@ -100,11 +100,11 @@ extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDeleg
                     .day(.twoDigits)
             ) else { return }
             
-            let alert = alertWithCompletions(
-                preferredStyle: .actionSheet,
+            let alert = Alert.alertWithCompletions(
+                style: .actionSheet,
                 title: "Удалить тренеровку \(String(date))",
-                actionOneTitle: "Отмена",
-                actionTwoTitle: "да",
+                actionTitleOne: "Отмена",
+                actionTitleTwo: "да",
                 completionOne: {},
                 completionTwo: { self.deleteDateFromCoreData(indexPath) }
             )

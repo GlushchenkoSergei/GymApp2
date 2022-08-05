@@ -52,17 +52,18 @@ class TimerViewController: UIViewController {
         return picker
     }()
     
+    private let shapeLayer = CAShapeLayer()
+    
     private var timerLabelIsOn = true
     private var timerOn = false
+    private var flagFirstStart = true
+    
+    private var beginnerValue: Int?
+    
     private var pickerMin = 0
     private var pickerSec = 0
     private var timer = Timer()
     private var durationTimer = 0
-    
-    private let shapeLayer = CAShapeLayer()
-    
-    private var flagFirstStart = true
-    private var beginnerValue: Int?
     
     private var valuesForPicker: [Int] = {
         var array: [Int] = []

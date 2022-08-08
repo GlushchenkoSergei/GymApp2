@@ -2,7 +2,11 @@
 
 This application is a  base workouts with flexible settings. As well as saving the workout in a diary.
 
-Technology stack used
+Initially, the project is a team effort from the "swiftbook" course. 
+In the future, after the completion of homework. I continued the project myself.
+___
+
+Technology stack used: CoreData, UITableView, UserDefaults, Teamwork with github.
 
 ![](https://github.com/GlushchenkoSergei/GlushchenkoSergei/blob/main/GTrain.png?raw=true)
 ![](https://github.com/GlushchenkoSergei/GlushchenkoSergei/blob/main/GDetail.png?raw=true)

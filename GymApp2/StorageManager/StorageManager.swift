@@ -95,7 +95,7 @@ class StorageManager {
     
     // MARK: - Core Data Saving support
     func saveContext () {
-        let context = persistentContainer.viewContext
+//        let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.save()

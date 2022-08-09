@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-protocol ExercisesControllerProtocol {
+protocol ExercisesControllerProtocol: AnyObject {
     func saveExercise(exercises: [Exercise])
 }
 
@@ -23,7 +23,7 @@ class ExercisesViewController: UIViewController {
     private var selectedExercises = [Exercise]()
     private var exercisesForSaved = [Exercise]()
     
-    let itemTimer = UINavigationItem(title: "Таймер")
+//    private let itemTimer = UINavigationItem(title: "Таймер")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,6 @@ class ExercisesViewController: UIViewController {
         setRightButtonItem()
         setBarButtonIsEnabled()
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let detailVC = segue.destination as? DetailController else { return }
@@ -73,7 +72,7 @@ class ExercisesViewController: UIViewController {
     }
     
     @objc private func openTimer() {
-        // открыть контроллер таймер
+        present(TimerViewController(), animated: true)
     }
     
     @objc private func addExerciseToDiary() {
@@ -89,8 +88,6 @@ class ExercisesViewController: UIViewController {
         present(alert, animated: true)
         dismiss(animated: true)
     }
-    
-    
     
     private func setValueControl() {
         guard userDefaults.array(forKey: "numberSegment") != nil else { return }
@@ -161,6 +158,7 @@ extension ExercisesViewController: ExercisesControllerProtocol {
     func saveExercise(exercises: [Exercise]) {
         exercisesForSaved = exercises
         mainTableView.reloadData()
+        setBarButtonIsEnabled()
     }
 }
 
@@ -199,7 +197,7 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    //MARK: - swipe action
+    //MARK: - Настройка свайпа табличного представления
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let index = exercisesForSaved.contains(selectedExercises[indexPath.row])
@@ -208,7 +206,7 @@ extension ExercisesViewController: UITableViewDelegate, UITableViewDataSource {
         let color = index ? #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1) : #colorLiteral(red: 0, green: 0.798466444, blue: 0.9789896607, alpha: 0.4459887048)
         let imageName = index ? "multiply.circle.fill": "checkmark.circle.fill"
         
-        let actionDone = UIContextualAction(style: .normal, title: "done") { _, _, completion in
+        let actionDone = UIContextualAction(style: .normal, title: "done") { [unowned self] _, _, completion in
             
             if !self.exercisesForSaved.contains(exercise) {
                 self.exercisesForSaved.append(exercise)

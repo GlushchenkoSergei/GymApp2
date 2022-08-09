@@ -5,7 +5,6 @@
 //  Created by mac on 23.04.2022.
 //
 
-//func test(test: String) {}
 
 struct Exercise: Equatable, Codable {
     var description: String

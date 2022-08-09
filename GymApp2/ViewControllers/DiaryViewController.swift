@@ -35,7 +35,7 @@ class DiaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Дневник тренировок"
+        title = "Дневник"
         mainTableView.rowHeight = 60
         setRightButtonItem()
     }
@@ -71,8 +71,8 @@ extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateViewCell
-        cell.labelDate.textColor = .black
-        cell.backgroundColor = indexPath.row == indexSelected ? #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1) : #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 0.38)
+        cell.labelDate.textColor = .white
+        cell.backgroundColor = indexPath.row == indexSelected ? #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 0.783088197) : #colorLiteral(red: 0, green: 0.7945597768, blue: 0.9721226096, alpha: 0.2095088004)
         cell.labelDate.text = diaryList[indexPath.row].date?.formatted(
             Date.FormatStyle()
                 .day()
@@ -100,11 +100,11 @@ extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDeleg
                     .day(.twoDigits)
             ) else { return }
             
-            let alert = alertWithCompletions(
-                preferredStyle: .actionSheet,
+            let alert = Alert.alertWithCompletions(
+                style: .actionSheet,
                 title: "Удалить тренеровку \(String(date))",
-                actionOneTitle: "Отмена",
-                actionTwoTitle: "да",
+                actionTitleOne: "Отмена",
+                actionTitleTwo: "да",
                 completionOne: {},
                 completionTwo: { self.deleteDateFromCoreData(indexPath) }
             )

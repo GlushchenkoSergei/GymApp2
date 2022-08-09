@@ -24,6 +24,7 @@
 		04B9312A2817C71700F56B33 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B931212817C51300F56B33 /* Model.swift */; };
 		04B9312B2817C71C00F56B33 /* DataManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B931232817C51300F56B33 /* DataManage.swift */; };
 		04B9312C2817C72000F56B33 /* MuscleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B931182817C51300F56B33 /* MuscleSwitch.swift */; };
+		04D6269A286B367E005B7AB0 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D62699286B367E005B7AB0 /* TimerViewController.swift */; };
 		04DFCBAB28607531009487D6 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DFCBAA28607531009487D6 /* DiaryViewController.swift */; };
 		04DFCBAD2860B413009487D6 /* DateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DFCBAC2860B413009487D6 /* DateViewCell.swift */; };
 		7485B7212818846200A37BA8 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485B7202818846200A37BA8 /* AlertController.swift */; };
@@ -49,6 +50,7 @@
 		04B9311F2817C51300F56B33 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		04B931212817C51300F56B33 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		04B931232817C51300F56B33 /* DataManage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManage.swift; sourceTree = "<group>"; };
+		04D62699286B367E005B7AB0 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		04DFCBAA28607531009487D6 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		04DFCBAC2860B413009487D6 /* DateViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewCell.swift; sourceTree = "<group>"; };
 		7485B7202818846200A37BA8 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				04B9311A2817C51300F56B33 /* ChangeDetailController.swift */,
 				04DFCBAA28607531009487D6 /* DiaryViewController.swift */,
 				04DFCBAC2860B413009487D6 /* DateViewCell.swift */,
+				04D62699286B367E005B7AB0 /* TimerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				04B931242817C6FC00F56B33 /* ChangeDetailController.swift in Sources */,
 				04B931282817C70600F56B33 /* SettingsViewController.swift in Sources */,
 				04B931002817C32100F56B33 /* AppDelegate.swift in Sources */,
+				04D6269A286B367E005B7AB0 /* TimerViewController.swift in Sources */,
 				04DFCBAD2860B413009487D6 /* DateViewCell.swift in Sources */,
 				04B931262817C70100F56B33 /* DetailController.swift in Sources */,
 				04B931272817C70400F56B33 /* StartViewController.swift in Sources */,

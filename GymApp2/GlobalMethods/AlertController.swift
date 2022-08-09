@@ -7,15 +7,19 @@
 
 import UIKit
 
-enum Alert {
-   static func alert(with title: String, and message: String) -> UIAlertController {
+class Alert {
+    static let shared = Alert()
+    
+    private init() {}
+    
+    func alert(with title: String, and message: String) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(alertAction)
         return alert
     }
     
-   static func alertWithCompletions(style preferredStyle: UIAlertController.Style, title: String, actionTitleOne: String, actionTitleTwo: String, completionOne: @escaping () -> Void, completionTwo: @escaping () -> Void) -> UIAlertController {
+   func alertWithCompletions(style preferredStyle: UIAlertController.Style, title: String, actionTitleOne: String, actionTitleTwo: String, completionOne: @escaping () -> Void, completionTwo: @escaping () -> Void) -> UIAlertController {
         let alert = UIAlertController(title: title, message: "", preferredStyle: preferredStyle)
         let alertAction = UIAlertAction(title: actionTitleOne, style: .cancel) { _ in
             completionOne()

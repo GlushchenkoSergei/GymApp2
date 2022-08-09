@@ -94,7 +94,7 @@ class SettingsViewController: UIViewController {
         //Dara for segmentControl
         userDefaults.setValue([Int(numberOfStepper.text ?? "") ?? 0], forKey: "numberSegment")
         
-        let alert = Alert.alert(with: "", and: "Настройки для \(titleCurrenSegment) тренеровки сохраненны")
+        let alert = Alert.shared.alert(with: "", and: "Настройки для \(titleCurrenSegment) тренеровки сохраненны")
         present(alert, animated: true)
     }
     

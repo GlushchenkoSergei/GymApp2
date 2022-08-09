@@ -100,7 +100,7 @@ extension DiaryViewController: UICollectionViewDataSource, UICollectionViewDeleg
                     .day(.twoDigits)
             ) else { return }
             
-            let alert = Alert.alertWithCompletions(
+            let alert = Alert.shared.alertWithCompletions(
                 style: .actionSheet,
                 title: "Удалить тренеровку \(String(date))",
                 actionTitleOne: "Отмена",

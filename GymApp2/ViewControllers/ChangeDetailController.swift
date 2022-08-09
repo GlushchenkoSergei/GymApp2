@@ -55,7 +55,7 @@ class ChangeDetailController: UIViewController, UITextFieldDelegate {
             if exercises.description == exercise.description {
                 DataManage.shared.exercises[counter].description = nameText.text ?? ""
                 DataManage.shared.exercises[counter].numberOfRepetitions = descriptionText.text ?? ""
-                let alert = Alert.alert(with: "", and: "Изменения для \(nameText.text ?? "") сохранены!")
+                let alert = Alert.shared.alert(with: "", and: "Изменения для \(nameText.text ?? "") сохранены!")
                 present(alert, animated: true)
             }
             counter += 1

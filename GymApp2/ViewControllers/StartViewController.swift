@@ -32,7 +32,7 @@ class StartViewController: UIViewController {
     @IBAction func TapButtonDiary(_ sender: Any) {
         if !getCompletedExercise().isEmpty {
 
-            let alert = Alert.alertWithCompletions(
+            let alert = Alert.shared.alertWithCompletions(
                 style: .actionSheet,
                 title: "Имеется не завершенная тренировка",
                 actionTitleOne: "Не сохранять",
@@ -49,7 +49,7 @@ class StartViewController: UIViewController {
     
     @IBAction func tapAboutUs(_ sender: Any) {
         let names = "Сергей Глущенко: t.me gl_sergeyy \n Василий Полторак: t.me ednzlo"
-        let alert = Alert.alert(with: "Приложение разработали", and: names)
+        let alert = Alert.shared.alert(with: "Приложение разработали", and: names)
         present(alert, animated: true)
     }
     
